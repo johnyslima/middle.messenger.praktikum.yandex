@@ -1,0 +1,21 @@
+<div class="form">
+  <div class="form-head">
+    <h2>{{ titleForm }}</h2>
+  </div>
+  <div class="form-content">
+    <div class="form-content__input">
+      {{> input/input placeholder="Логин" type="text" name="login" }}
+    </div>
+    <div class="form-content__input">
+      {{> input/input placeholder="Пароль" type="password" name="password" }}
+    </div>
+  </div>
+  <div class="form-footer">
+    <div class="form-footer__button">
+      {{> button/button label="Авторизироваться" }}
+    </div>
+    <div class="form-footer__link">
+      <a href="/src/profile.hbs">Нет аккаунта?</a>
+    </div>
+  </div>
+</div>

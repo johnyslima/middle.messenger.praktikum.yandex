@@ -1,0 +1,52 @@
+.form {
+  width: 340px;
+  min-height: 460px;
+  background-color: #1a1924;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 10px;
+  align-items: center;
+  box-shadow: 0px 0px 3px #07847e;
+
+  &-head {
+    margin: 20px 0px;
+    flex: 1;
+    h2 {
+      color: #e1e1e6;
+    }
+  }
+
+  &-content {
+    flex: 4;
+    div &__input {
+      margin-bottom: 20px;
+    }
+  }
+  &-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin-top: 35px;
+    flex: 2;
+
+    &__button {
+      width: 100%;
+    }
+
+    &__link {
+      text-align: center;
+      margin: 15px auto 20px;
+      a {
+        color: #633bbc;
+        text-decoration: none;
+
+        &:visited,
+        &:active {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

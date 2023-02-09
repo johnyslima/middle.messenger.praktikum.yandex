@@ -1,0 +1,31 @@
+---
+name:
+first: John
+last: Doe
+buttonLabel: "Breath with Me!"
+---
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="src/index.pcss" />
+    <title>Test</title>
+</head>
+
+<body>
+    <div class="main">
+        Hello,
+        {{name.last}}
+        {{name.first}}
+        <a href="/src/profile.hbs">Profile</a>
+        <a href="/src/pages/auth/login.hbs">Login</a>
+        <a href="/src/pages/auth/signin.hbs">SignIn</a>
+        <a href="/src/pages/chat/chat.hbs">Chat</a>
+
+    </div>
+</body>
+
+</html>
