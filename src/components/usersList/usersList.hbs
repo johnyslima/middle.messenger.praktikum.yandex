@@ -1,0 +1,7 @@
+<div class="userlist">
+  {{#each roomList}}
+  {{!-- <div>{{this.roomName}}</div> --}}
+  {{!-- <div>{{this.time}}</div> --}}
+  <div>{{> usersListItem room=this }}</div>
+  {{/each}}
+</div>

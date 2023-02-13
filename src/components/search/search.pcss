@@ -1,0 +1,20 @@
+input[type="search"] {
+  box-shadow: 0px 0px 3px #07847e;
+  border: 1px solid #07847e;
+  border-radius: 12px;
+  background-color: var(--backgroundColor);
+  width: 100%;
+  color: var(--textColorRegular);
+  padding: 10px;
+  margin: 15px 0px;
+
+  &::placeholder {
+    text-align: center;
+  }
+
+  &:focus-visible,
+  &:focus,
+  &:active {
+    box-shadow: 0px 0px 3px #07847e;
+  }
+}

@@ -1,58 +1,38 @@
----
-titleForm: Регистрация
-buttonLabel: Зарегистрироваться
----
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/src/index.pcss" />
-  <title>Test</title>
-</head>
-
-<body>
-  <a href="/index.hbs">Main</a>
-  <div class="login">
-    <div class="form">
-      <div class="form-head">
-        <h2>{{ titleForm }}</h2>
-      </div>
-      <div class="form-content">
-        <div class="form-content__input">
-          {{> input/input placeholder="Почта" type="email" name="email" }}
-        </div>
-        <div class="form-content__input">
-          {{> input/input placeholder="Логин" type="text" name="login"}}
-        </div>
-        <div class="form-content__input">
-          {{> input/input placeholder="Имя" type="text" name="first_name"}}
-        </div>
-        <div class="form-content__input">
-          {{> input/input placeholder="Фамилия" type="text" name="second_name"}}
-        </div>
-        <div class="form-content__input">
-          {{> input/input placeholder="Телефон" type="tel" name="phone"}}
-        </div>
-        <div class="form-content__input">
-          {{> input/input placeholder="Пароль" type="password" name="password"}}
-        </div>
-        <div class="form-content__input">
-          {{> input/input placeholder="Пароль(повтор)" type="password" name="password_repeat"}}
-        </div>
-      </div>
-      <div class="form-footer">
-        <div class="form-footer__button">
-          {{> button/button label=buttonLabel }}
-        </div>
-        <div class="form-footer__link">
-          <a href="/src/profile.hbs">Войти</a>
-        </div>
-      </div>
-    </div>
+<div class="login">
+  {{#extend "form-layout"}}
+  {{#content "title"}}
+  <h2>{{ signIn.title }}</h2>
+  {{/content}}
+  {{#content "body"}}
+  <div class="form-content__input">
+    {{> input placeholder="Почта" type="email" name="email" }}
   </div>
-</body>
-
-</html>
+  <div class="form-content__input">
+    {{> input placeholder="Логин" type="text" name="login"}}
+  </div>
+  <div class="form-content__input">
+    {{> input placeholder="Имя" type="text" name="first_name"}}
+  </div>
+  <div class="form-content__input">
+    {{> input placeholder="Фамилия" type="text" name="second_name"}}
+  </div>
+  <div class="form-content__input">
+    {{> input placeholder="Телефон" type="tel" name="phone"}}
+  </div>
+  <div class="form-content__input">
+    {{> input placeholder="Пароль" type="password" name="password"}}
+  </div>
+  <div class="form-content__input">
+    {{> input placeholder="Пароль(повтор)" type="password" name="password_repeat"}}
+  </div>
+  {{/content}}
+  {{#content "footer"}}
+  <div class="form-footer__button">
+    {{> button label=signIn.buttonLabel }}
+  </div>
+  <div class="form-footer__link">
+    <a href="/src/profile.hbs">Войти</a>
+  </div>
+  {{/content}}
+  {{/extend}}
+</div>

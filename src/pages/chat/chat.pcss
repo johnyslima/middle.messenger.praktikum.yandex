@@ -1,15 +1,29 @@
 .chat {
   display: flex;
+  height: inherit;
 
-  .left-bar {
-    height: 100vh;
-    border: 1px solid red;
+  &-left-field {
+    border-right: 1px solid var(--borderColor);
     width: 310px;
+    min-width: 310px;
+    padding: 0px 10px;
+    overflow: hidden;
+    height: inherit;
+
+    &__profile-link {
+      display: flex;
+      justify-content: flex-end;
+      margin: 10px 0px;
+
+      a {
+        color: var(--grayColor);
+        text-decoration: none;
+      }
+    }
   }
 
-  .chat-field {
+  &-right-field {
     height: 100vh;
-    border: 1px solid green;
     width: 100%;
   }
 }

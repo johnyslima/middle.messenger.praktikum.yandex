@@ -1,43 +1,23 @@
----
-titleForm: Вход
-buttonLabel: Авторизироваться
----
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/src/index.pcss" />
-  <title>Test</title>
-</head>
-
-<body>
-  <a href="/index.hbs">Main</a>
-  <div class="login">
-    <div class="form">
-      <div class="form-head">
-        <h2>{{ titleForm }}</h2>
-      </div>
-      <div class="form-content">
-        <div class="form-content__input">
-          {{> input/input placeholder="Логин" type="text" }}
-        </div>
-        <div class="form-content__input">
-          {{> input/input placeholder="Пароль" type="password" }}
-        </div>
-      </div>
-      <div class="form-footer">
-        <div class="form-footer__button">
-          {{> button/button label=buttonLabel }}
-        </div>
-        <div class="form-footer__link">
-          <a href="/src/profile.hbs">Нет аккаунта?</a>
-        </div>
-      </div>
-    </div>
+<div class="login">
+  {{#extend "form-layout"}}
+  {{#content "title"}}
+  <h2>{{ login.title }}</h2>
+  {{/content}}
+  {{#content "body"}}
+  <div class="form-content__input">
+    {{> input placeholder="Логин" type="text" }}
   </div>
-</body>
-
-</html>
+  <div class="form-content__input">
+    {{> input placeholder="Пароль" type="password" }}
+  </div>
+  {{/content}}
+  {{#content "footer"}}
+  <div class="form-footer__button">
+    {{> button label=login.buttonLabel }}
+  </div>
+  <div class="form-footer__link">
+    <a href="/src/profile.hbs">Нет аккаунта?</a>
+  </div>
+  {{/content}}
+  {{/extend}}
+</div>
