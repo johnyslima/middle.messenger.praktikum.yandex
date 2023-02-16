@@ -1,7 +1,4 @@
 ---
-name:
-  first: John
-  last: Doe
 login:
   title: Вход
   buttonLabel: Авторизоваться
