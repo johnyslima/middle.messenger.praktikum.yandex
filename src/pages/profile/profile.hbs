@@ -1,6 +1,6 @@
 <div class="profile-page">
-  <div class="profile-page__button-back">
-    <div onclick="goToPage('main')"><img src={{ icons.arrowLeftIconSvg }} alt=""></div>
+  <div class="profile-page__button-back" onclick="goToPage('main')">
+    <div><img src={{ icons.arrowLeftIconSvg }} alt=""></div>
   </div>
   <div class="profile-page__form">
     <div class="profile-page__form-avatar">
@@ -16,84 +16,94 @@
     <div class="profile-page__form-name">
       Иван
     </div>
+    {{#ifEquals page "profile"}}
     <div class="profile-page__form-info">
-      {{#ifEquals page "profileChangePassword"}}
-      <div class="profile-page__form-info__row">
-        <div class="profile-page__form-info__label">Старый пароль</div>
-        {{> inputProfile type='text' value='•••••••••' }}
-      </div>
-      <div class="profile-page__form-info__row">
-        <div class="profile-page__form-info__label">Новый пароль</div>
-        {{> inputProfile type='text' value='•••••••••••' }}
-      </div>
-      <div class="profile-page__form-info__row">
-        <div class="profile-page__form-info__label">Повторите новый пароль</div>
-        {{> inputProfile type='text' value='•••••••••••' }}
-      </div>
       {{else}}
-      <div class="profile-page__form-info__row">
-        <div class="profile-page__form-info__label">Почта</div>
-        {{#ifEquals page "profile"}}
-        <div class="profile-page__form-info__value">pochta@yandex.ru</div>
-        {{else}}
-        {{> inputProfile type='text' value='pochta@yandex.ru' }}
+      <form class="profile-page__form-info">
         {{/ifEquals}}
-      </div>
-      <div class="profile-page__form-info__row">
-        <div class="profile-page__form-info__label">Логин</div>
-        {{#ifEquals page "profile"}}
-        <div class="profile-page__form-info__value">ivanivanov</div>
-        {{else}}
-        {{> inputProfile type='text' value='ivanivanov' }}
-        {{/ifEquals}}
-      </div>
-      <div class="profile-page__form-info__row">
-        <div class="profile-page__form-info__label">Имя</div>
-        {{#ifEquals page "profile"}}
-        <div class="profile-page__form-info__value">Иван</div>
-        {{else}}
-        {{> inputProfile type='text' value='Иван' }}
-        {{/ifEquals}}
-      </div>
-      <div class="profile-page__form-info__row">
-        <div class="profile-page__form-info__label">Фамилия</div>
-        {{#ifEquals page "profile"}}
-        <div class="profile-page__form-info__value">Иванов</div>
-        {{else}}
-        {{> inputProfile type='text' value='Иванов' }}
-        {{/ifEquals}}
-      </div>
-      <div class="profile-page__form-info__row">
-        <div class="profile-page__form-info__label">Имя в чате</div>
-        {{#ifEquals page "profile"}}
-        <div class="profile-page__form-info__value">Иван</div>
-        {{else}}
-        {{> inputProfile type='text' value='Иван' }}
-        {{/ifEquals}}
-      </div>
-      <div class="profile-page__form-info__row">
-        <div class="profile-page__form-info__label">Телефон</div>
-        {{#ifEquals page "profile"}}
-        <div class="profile-page__form-info__value">+7 (909) 967 30 30</div>
-        {{else}}
-        {{> inputProfile type='text' value='+7-(909)-967-30-30' }}
-        {{/ifEquals}}
-      </div>
-      {{/ifEquals}}
 
+        {{#ifEquals page "profileChangePassword"}}
+        <div class="profile-page__form-info__row">
+          <div class="profile-page__form-info__label">Старый пароль</div>
+          {{> inputProfile type="text" inputName="old_password" value="•••••••••" }}
+        </div>
+        <div class="profile-page__form-info__row">
+          <div class="profile-page__form-info__label">Новый пароль</div>
+          {{> inputProfile type="text" inputName="new_password" value="•••••••••••" }}
+        </div>
+        <div class="profile-page__form-info__row">
+          <div class="profile-page__form-info__label">Повторите новый пароль</div>
+          {{> inputProfile type="text" inputName="repeat_password" value="•••••••••••" }}
+        </div>
+        {{else}}
+        <div class="profile-page__form-info__row">
+          <div class="profile-page__form-info__label">Почта</div>
+          {{#ifEquals page "profile"}}
+          <div class="profile-page__form-info__value">pochta@yandex.ru</div>
+          {{else}}
+          {{> inputProfile type="text" inputName="email" value="pochta@yandex.ru" }}
+          {{/ifEquals}}
+        </div>
+        <div class="profile-page__form-info__row">
+          <div class="profile-page__form-info__label">Логин</div>
+          {{#ifEquals page "profile"}}
+          <div class="profile-page__form-info__value">ivanivanov</div>
+          {{else}}
+          {{> inputProfile type="text" inputName="login" value="ivanivanov" }}
+          {{/ifEquals}}
+        </div>
+        <div class="profile-page__form-info__row">
+          <div class="profile-page__form-info__label">Имя</div>
+          {{#ifEquals page "profile"}}
+          <div class="profile-page__form-info__value">Иван</div>
+          {{else}}
+          {{> inputProfile type="text" inputName="first_name" value="Иван" }}
+          {{/ifEquals}}
+        </div>
+        <div class="profile-page__form-info__row">
+          <div class="profile-page__form-info__label">Фамилия</div>
+          {{#ifEquals page "profile"}}
+          <div class="profile-page__form-info__value">Иванов</div>
+          {{else}}
+          {{> inputProfile type="text" inputName="second_name" value="Иванов" }}
+          {{/ifEquals}}
+        </div>
+        <div class="profile-page__form-info__row">
+          <div class="profile-page__form-info__label">Имя в чате</div>
+          {{#ifEquals page "profile"}}
+          <div class="profile-page__form-info__value">Иван</div>
+          {{else}}
+          {{> inputProfile type="text" inputName="chat_name" value="Иван" }}
+          {{/ifEquals}}
+        </div>
+        <div class="profile-page__form-info__row">
+          <div class="profile-page__form-info__label">Телефон</div>
+          {{#ifEquals page "profile"}}
+          <div class="profile-page__form-info__value">+7 (909) 967 30 30</div>
+          {{else}}
+          {{> inputProfile type="text" inputName="phone" value="+7-(909)-967-30-30" }}
+          {{/ifEquals}}
+        </div>
+        {{/ifEquals}}
+
+
+        {{#ifEquals page "profile"}}
     </div>
+    {{else}}
+    </form>
+    {{/ifEquals}}
 
     {{#ifEquals page "profile"}}
     <div class="profile-page__form-actions">
       <div class="profile-page__form-actions__edit" onclick="goToPage('profileEdit')">Изменить данные</div>
       <div class="profile-page__form-actions__edit" onclick="goToPage('profileChangePassword')">Изменить пароль</div>
       <div class="profile-page__form-actions__logout" onclick="goToPage('main')">Выйти</div>
-      </divL>
     </div>
-    {{else}}
-    <div class="profile-page__form-save-button">
-      {{> button label=profileEdit.buttonLabel action="goToPage('chat')" }}
-    </div>
-    {{/ifEquals}}
-
   </div>
+  {{else}}
+  <div class="profile-page__form-save-button">
+    {{> button label=profileEdit.buttonLabel action="goToPage('chat')" }}
+  </div>
+  {{/ifEquals}}
+
+</div>
