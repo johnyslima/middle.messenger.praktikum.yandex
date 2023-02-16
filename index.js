@@ -5,7 +5,6 @@ import signIn from "./src/pages/auth/signin.hbs";
 import chat from "./src/pages/chat/chat.hbs";
 import profile from "./src/pages/profile/profile.hbs";
 import error from "./src/pages/error/errorPage.hbs";
-import avatar from "./src/assets/images/avatar.png";
 import addIconSvg from "./src/assets/icons/add_icon.svg";
 import arrowRightIconSvg from "./src/assets/icons/arrow_right.svg";
 import arrowLeftIconSvg from "./src/assets/icons/arrow_left.svg";
@@ -48,8 +47,5 @@ window.goToPage = (name) => {
 };
 
 window.addEventListener("DOMContentLoaded", () => {
-  const html = main(data);
-
-  // render(html);
   render(ROUTES.main(data));
 });
