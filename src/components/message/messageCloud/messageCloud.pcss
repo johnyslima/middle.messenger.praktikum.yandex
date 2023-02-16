@@ -1,0 +1,32 @@
+.message-row {
+  display: flex;
+
+  .message {
+    border-radius: 12px;
+    max-width: 400px;
+    color: var(--textColorRegular);
+    padding: 11px;
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 10px;
+    position: relative;
+
+    &.message-from {
+      background-color: var(--primaryColor);
+      border-top-left-radius: 0px;
+    }
+
+    &.message-to {
+      background-color: var(--borderColor);
+      border-bottom-right-radius: 0px;
+    }
+  }
+
+  &.message-from {
+    justify-content: flex-start;
+  }
+
+  &.message-to {
+    justify-content: flex-end;
+  }
+}

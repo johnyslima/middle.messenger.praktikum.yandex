@@ -1,7 +1,7 @@
 <div class="login">
   {{#extend "form-layout"}}
   {{#content "title"}}
-  <h2>{{ login.title }}</h2>
+  <div>{{ login.title }}</div>
   {{/content}}
   {{#content "body"}}
   <div class="form-content__input">
@@ -13,10 +13,10 @@
   {{/content}}
   {{#content "footer"}}
   <div class="form-footer__button">
-    {{> button label=login.buttonLabel }}
+    {{> button label=login.buttonLabel action="goToPage('chat')" }}
   </div>
   <div class="form-footer__link">
-    <a href="/src/profile.hbs">Нет аккаунта?</a>
+    <a onclick="goToPage('signin')">Нет аккаунта?</a>
   </div>
   {{/content}}
   {{/extend}}

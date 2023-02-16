@@ -1,8 +1,42 @@
 <div class="chat">
   <div class="chat-left-field">
-    <div class="chat-left-field__profile-link"><a href="/src/profile.hbs">Профиль ›</a></div>
-    <div>{{> search }}</div>
+    <div class="chat-left-field__profile-link"><a onclick="goToPage('profile')">Профиль ›</a></div>
+    <div class="chat-left-field__search">{{> search placeholder="Поиск"}}</div>
     {{> usersList }}
   </div>
-  <div class="chat-right-field">RIghtBar</div>
+  <div class="chat-right-field">
+    <div class="chat-room-header">
+      <div class="chat-room-header__avatar"><img src="../assets/images/avatar.png" width="34" /></div>
+      <div class="chat-room-header__name">Вадим
+        <div class="chat-room-header__name__context-menu-button"><img src={{ icons.contextMenuIconSvg }} alt=""></div>
+      </div>
+    </div>
+    <div class="chat-room-content">
+      <div class="chat-room-content__date">19 июня</div>
+      <div class="chat-room-content__messages">
+        {{> messageCloud type='message-from' messageText='Привет! Смотри, тут всплыл интересный кусок лунной космической
+        истории — НАСА в
+        какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что
+        астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности
+        Луны, так как астронавты с собой забрали только кассеты с пленкой.
+
+        Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали.
+        Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.' }}
+        {{> messageCloud type='message-from' messageText='Привет! Смотри, тут всплыл интересный кусок лунной космической
+        истории — НАСА в
+        какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что
+        астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности
+        Луны, так как астронавты с собой забрали только кассеты с пленкой.
+
+        Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали.
+        Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.' }}
+        {{> messageCloud type='message-to' messageText='Круто' }}
+      </div>
+    </div>
+    <div class="chat-room__send-message-panel">
+      <img src={{ icons.addIconSvg }} alt="">
+      <div class="message-enter">{{> messageEnter placeholder="Сообщение" }}</div>
+      <div class="message-send"><img src={{ icons.arrowRightIconSvg }} alt=""></div>
+    </div>
+  </div>
 </div>

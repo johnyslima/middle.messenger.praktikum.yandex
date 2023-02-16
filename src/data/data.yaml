@@ -8,6 +8,14 @@ login:
 signIn:
   title: Регистрация
   buttonLabel: Зарегистрироваться
+profileEdit:
+  buttonLabel: Сохранить
+error404:
+  errorCode: 404
+  errorMessage: Не туда попали
+error500:
+  errorCode: 500
+  errorMessage: Мы уже фиксим
 roomList: [
   {
     roomId: "1",
