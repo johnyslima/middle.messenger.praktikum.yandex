@@ -1,7 +1,7 @@
 <div class="chat">
   <div class="chat-left-field">
     <div class="chat-left-field__profile-link"><a onclick="goToPage('profile')">Профиль ›</a></div>
-    <div class="chat-left-field__search">{{> search placeholder="Поиск"}}</div>
+    <div class="chat-left-field__search">{{> search placeholder="Поиск" inputName="search"}}</div>
     {{> usersList }}
   </div>
   <div class="chat-right-field">
@@ -35,7 +35,7 @@
     </div>
     <div class="chat-room__send-message-panel">
       <img src={{ icons.addIconSvg }} alt="">
-      <div class="message-enter">{{> messageEnter placeholder="Сообщение" }}</div>
+      <div class="message-enter">{{> messageEnter placeholder="Сообщение" inputName="message" }}</div>
       <div class="message-send"><img src={{ icons.arrowRightIconSvg }} alt=""></div>
     </div>
   </div>
