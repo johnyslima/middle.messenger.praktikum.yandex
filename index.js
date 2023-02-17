@@ -41,7 +41,6 @@ function render(html) {
 }
 
 window.goToPage = (name) => {
-  console.log("here", name, { ...data, icons: { addIconSvg }, page: name });
   const page = ROUTES[name];
   render(page({ ...data, icons, page: name }));
 };
