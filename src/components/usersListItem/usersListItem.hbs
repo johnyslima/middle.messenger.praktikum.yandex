@@ -1,0 +1,28 @@
+<div class="userlist-item {{#if room.currentRoom}}current-item{{/if}}">
+  <div class="userlist-item__avatar">
+    <img src={{ room.avatar }} width="47" />
+  </div>
+  <div class="userlist-item-info">
+    <div class="userlist-item-info__row">
+      <div class="userlist-item-info__name">
+        {{ room.roomName }}
+      </div>
+      <div class="userlist-item-info__time">
+        {{ room.time }}
+      </div>
+    </div>
+    <div class="userlist-item-info__row">
+      <div class="userlist-item-info__last-message">
+        {{ room.lastMessage }}
+      </div>
+      {{#if room.countUnread}}
+      <div class="userlist-item-info__count-unread">
+        <span>
+          {{ room.countUnread }}
+        </span>
+      </div>
+      {{/if}}
+    </div>
+    <div class="userlist-item-info__row"></div>
+  </div>
+</div>

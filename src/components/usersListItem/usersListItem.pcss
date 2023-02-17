@@ -1,0 +1,62 @@
+.userlist-item {
+  border-bottom: 1px solid var(--borderColor);
+  border-top: 1px solid var(--borderColor);
+  border-left: none;
+  border-right: none;
+  padding: 12px 10px;
+  background-color: var(--backgroundColor);
+  color: var(--textColorRegular);
+  height: 47px;
+  display: flex;
+
+  &__avatar {
+    margin-right: 10px;
+  }
+
+  &-info {
+    width: 100%;
+    &__row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__name {
+      font-size: 13px;
+      line-height: 13px;
+    }
+    &__time {
+      color: var(--grayColor);
+      font-size: 9px;
+      line-height: 13px;
+    }
+    &__last-message {
+      color: var(--grayColor);
+      margin-top: 4px;
+      height: 30px;
+      font-size: 13px;
+      line-height: 15px;
+      -webkit-line-clamp: 2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    &__count-unread {
+      display: flex;
+      flex-direction: column-reverse;
+      font-size: 11px;
+      line-height: 12px;
+      span {
+        background-color: var(--primaryColor);
+        padding: 4px;
+        border-radius: 100%;
+        width: 15px;
+        height: 15px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.current-item {
+  background-color: var(--currentColor);
+}

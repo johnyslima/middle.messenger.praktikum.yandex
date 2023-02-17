@@ -1,0 +1,107 @@
+---
+login:
+  title: Вход
+  buttonLabel: Авторизоваться
+signIn:
+  title: Регистрация
+  buttonLabel: Зарегистрироваться
+profileEdit:
+  buttonLabel: Сохранить
+error404:
+  errorCode: 404
+  errorMessage: Не туда попали
+error500:
+  errorCode: 500
+  errorMessage: Мы уже фиксим
+roomList: [
+  {
+    roomId: "1",
+    roomName: "Андрей",
+    time: "10:49",
+    lastMessage: "Изображение",
+    countUnread: 2,
+    lastMessageFromYou: false,
+    currentRoom: false,
+    avatar: "../assets/images/avatar.png"
+  },
+  {
+    roomId: "2",
+    roomName: "Киноклуб",
+    time: "12:00",
+    lastMessage: "стикер",
+    countUnread: 0,
+    lastMessageFromYou: true,
+    currentRoom: false,
+    avatar: "../assets/images/avatar.png"
+  },
+  {
+    roomId: "3",
+    roomName: "Илья",
+    time: "15:12",
+    lastMessage: "Друзья, у меня для вас особенный выпуск новостей! Что-нибудь нужно еще написать.",
+    countUnread: 4,
+    lastMessageFromYou: false,
+    currentRoom: false,
+    avatar: "../assets/images/avatar.png"
+  },
+  {
+    roomId: "4",
+    roomName: "Вадим",
+    time: "Пт",
+    lastMessage: "Круто!",
+    countUnread: 0,
+    lastMessageFromYou: true,
+    currentRoom: true,
+    avatar: "../assets/images/avatar.png"
+  },
+  {
+    roomId: "5",
+    roomName: "тет-а-теты",
+    time: "Ср",
+    lastMessage: "И Human Interface guidelines и Material Design рекомендуют совершать что-то особенное",
+    countUnread: 0,
+    lastMessageFromYou: false,
+    currentRoom: false,
+    avatar: "../assets/images/avatar.png"
+  },
+  {
+    roomId: "6",
+    roomName: "1,2,3",
+    time: "Пн",
+    lastMessage: "Миллионы россиян ежедневно проводят десятки часов своего времени за телефонами",
+    countUnread: 0,
+    lastMessageFromYou: false,
+    currentRoom: false,
+    avatar: "../assets/images/avatar.png"
+  },
+  {
+    roomId: "7",
+    roomName: "Design Destroyer",
+    time: "Пн",
+    lastMessage: "В 2008 году художник Jon Rafman начал собирать колеекцию удивительных картин",
+    countUnread: 0,
+    lastMessageFromYou: false,
+    currentRoom: false,
+    avatar: "../assets/images/avatar.png"
+  },
+  {
+    roomId: "8",
+    roomName: "Day",
+    time: "1 Мая 2020",
+    lastMessage: "Так увлёкся работой по курсу, что совсем забыл его анонсировать в социальных",
+    countUnread: 0,
+    lastMessageFromYou: false,
+    currentRoom: false,
+    avatar: "../assets/images/avatar.png"
+  },
+  {
+    roomId: "9",
+    roomName: "Стас Рогозин",
+    time: "12 Апреля 2020",
+    lastMessage: "Можно или сегодня или завтра",
+    countUnread: 0,
+    lastMessageFromYou: false,
+    currentRoom: false,
+    avatar: "../assets/images/avatar.png"
+  },
+]

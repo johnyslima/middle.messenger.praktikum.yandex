@@ -1,0 +1,38 @@
+<div class="login">
+  {{#extend "form-layout"}}
+  {{#content "title"}}
+  <div>{{ signIn.title }}</div>
+  {{/content}}
+  {{#content "body"}}
+  <div class="form-content__input">
+    {{> input placeholder="Почта" type="email" inputName="email" }}
+  </div>
+  <div class="form-content__input">
+    {{> input placeholder="Логин" type="text" inputName="login"}}
+  </div>
+  <div class="form-content__input">
+    {{> input placeholder="Имя" type="text" inputName="first_name"}}
+  </div>
+  <div class="form-content__input">
+    {{> input placeholder="Фамилия" type="text" inputName="second_name"}}
+  </div>
+  <div class="form-content__input">
+    {{> input placeholder="Телефон" type="tel" inputName="phone"}}
+  </div>
+  <div class="form-content__input">
+    {{> input placeholder="Пароль" type="password" inputName="password"}}
+  </div>
+  <div class="form-content__input">
+    {{> input placeholder="Пароль(повтор)" type="password" inputName="password_repeat"}}
+  </div>
+  {{/content}}
+  {{#content "footer"}}
+  <div class="form-footer__button">
+    {{> button label=signIn.buttonLabel action="goToPage('chat')" }}
+  </div>
+  <div class="form-footer__link">
+    <a onclick="goToPage('chat')">Войти</a>
+  </div>
+  {{/content}}
+  {{/extend}}
+</div>
