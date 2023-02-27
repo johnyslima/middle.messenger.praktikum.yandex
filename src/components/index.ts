@@ -1,4 +1,4 @@
-import "./input";
+import "./input/form-input";
 import "./button";
 import "./usersList";
 import "./usersListItem";

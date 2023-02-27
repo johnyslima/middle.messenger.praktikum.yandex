@@ -1,0 +1,14 @@
+{
+  "extends": "airbnb",
+  "rules": {
+      "no-unused-vars": 2,
+      "max-len": [1, 100],
+      "max-params": [2, 3],
+      "semi": ["error", "always"],
+      "quotes": ["error", "double"]
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "parser": "@typescript-eslint/parser"
+}
+} 
