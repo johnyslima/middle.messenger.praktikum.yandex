@@ -2,7 +2,7 @@ import Block from "../../utils/Block";
 import template from "./messageCloud.hbs";
 
 export class MessageCloud extends Block {
-  constructor(props: any) {
+  constructor(props: unknown) {
     super(props);
   }
 

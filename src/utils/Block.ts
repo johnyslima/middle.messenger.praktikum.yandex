@@ -7,7 +7,7 @@ class Block<T extends Record<string, any> = any, E extends HTMLElement = HTMLEle
     FLOW_CDM: "flow:component-did-mount",
     FLOW_CDU: "flow:component-did-update",
     FLOW_RENDER: "flow:render",
-  };
+  } as const;
 
   public id = nanoid(6);
   protected props: T;

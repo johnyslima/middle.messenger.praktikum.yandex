@@ -1,6 +1,7 @@
-import { Login, SignUp, Profile, Chat, Error404, Error500 } from "../pages";
+import { Login, SignUp, Profile, Chat, Error404, Error500, Main } from "../pages";
 
 const ROUTES = {
+  main: Main,
   login: Login,
   signUp: SignUp,
   chat: Chat,
@@ -12,6 +13,7 @@ const ROUTES = {
 };
 
 export const renderDom = (route: keyof typeof ROUTES) => {
+  console.log('route', route)
   const app = document.querySelector("#root")!;
   app.innerHTML = "";
 

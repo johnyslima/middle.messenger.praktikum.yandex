@@ -12,11 +12,11 @@ import {
   RepeatPasswordValidator,
 } from "../../validators";
 import { ProfileBody } from "../../blocks";
-import { ChildType, Pages } from "../../typings";
+import { ChildType, Pages, PageType } from "../../typings";
 import { renderDom } from "../../utils/Routers";
 
 export class Profile extends Block {
-  constructor(props?: any) {
+  constructor(props?: PageType) {
     super(props);
   }
 
@@ -31,6 +31,7 @@ export class Profile extends Block {
       className: "profile-page__button-back",
       events: {
         click: (event: Event) => {
+          event.preventDefault();
           renderDom(Pages.CHAT)
         },
       },
@@ -43,6 +44,7 @@ export class Profile extends Block {
       className: "button button--primary",
       events: {
         click: (event: Event) => {
+          event.preventDefault();
           const emailField = formContent.children.EmailInput as FormInput;
           const loginField = formContent.children.LoginInput as FormInput;
           const firstNameField = formContent.children
@@ -117,6 +119,7 @@ export class Profile extends Block {
       className: "profile-page__form-actions__edit",
       events: {
         click: (event: Event) => {
+          event.preventDefault();
           renderDom(Pages.PROFILE_EDIT)
         },
       },
@@ -128,6 +131,7 @@ export class Profile extends Block {
       className: "profile-page__form-actions__edit",
       events: {
         click: (event: Event) => {
+          event.preventDefault();
           renderDom(Pages.PROFILE_CHANGE_PASSWORD)
         },
       },
@@ -139,6 +143,7 @@ export class Profile extends Block {
       className: "profile-page__form-actions__logout",
       events: {
         click: (event: Event) => {
+          event.preventDefault();
           renderDom(Pages.LOGIN)
         },
       },

@@ -5,7 +5,7 @@ import kebabMenuIconSvg from "../../assets/icons/kebab_menu.svg";
 import template from "./chatRoomHeader.hbs";
 
 interface ChatRoomHeaderProps {
-  avatar?: string;
+  avatar?: SVGElement;
   roomName?: string;
 }
 
@@ -19,7 +19,6 @@ export class ChatRoomHeader extends Block {
     let child: ChildType = this.children;
 
     const buttonContextMenu = new Button({
-      label: "Профиль ›",
       className: "chat-room-header__name__context-menu-button",
       events: {
         click: (event: Event) => {

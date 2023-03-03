@@ -11,7 +11,7 @@ import {
 } from "../../validators";
 
 export class SignUpBody extends Block {
-  constructor(props: any) {
+  constructor(props: unknown) {
     super(props);
   }
 

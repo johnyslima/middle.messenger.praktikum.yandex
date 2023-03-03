@@ -5,7 +5,7 @@ import { LoginValidator, PasswordValidator } from "../../validators";
 import { ChildType } from "../../typings/childType";
 
 export class LoginBody extends Block {
-  constructor(props: any) {
+  constructor(props: unknown) {
     super(props);
   }
 
