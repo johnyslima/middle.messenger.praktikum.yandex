@@ -13,6 +13,8 @@ interface Options {
   method?: string
 }
 
+type HTTPMethod = (url: string, options?: Options) => Promise<unknown>
+
 export class HTTPTransport {
   private readonly _baseUrl: string;
 
@@ -20,7 +22,7 @@ export class HTTPTransport {
     this._baseUrl = url;
   }
 
-  static isObject(value: any) {
+  static isObject(value: unknown) {
     return Object.prototype.toString.call(value) === '[object Object]';
   }
 
@@ -38,15 +40,15 @@ export class HTTPTransport {
 }
   
 
-  get = (url: string, options: Options = {}) => {
+  get: HTTPMethod = (url, options = {}) => {
     return this.request(
-      url,
+      !!options.data ? `${url}${HTTPTransport.queryStringify(options.data)}` : url,
       { ...options, method: METHODS.GET },
       options.timeout
     );
   };
 
-  post = (url: string, options: Options = {}) => {
+  post: HTTPMethod = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.POST },
@@ -54,7 +56,7 @@ export class HTTPTransport {
     );
   };
 
-  put = (url: string, options: Options = {}) => {
+  put: HTTPMethod = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.PUT },
@@ -62,7 +64,7 @@ export class HTTPTransport {
     );
   };
 
-  delete = (url: string, options: Options = {}) => {
+  delete: HTTPMethod = (url, options = {}) => {
     return this.request(
       url,
       { ...options, method: METHODS.DELETE },
@@ -82,7 +84,7 @@ export class HTTPTransport {
       const xhr = new XMLHttpRequest();
       const isGet = method === METHODS.GET;
 
-      xhr.open(method, isGet && !!data ? `${url}${HTTPTransport.queryStringify(data)}` : url);
+      xhr.open(method, url);
 
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);

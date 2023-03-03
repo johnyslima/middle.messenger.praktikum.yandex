@@ -11,10 +11,10 @@ import {
 } from "../../../validators";
 import template from "../login/login.hbs";
 import { renderDom } from "../../../utils/Routers";
-import { Pages } from "../../../typings";
+import { Pages, PageType } from "../../../typings";
 
 export class SignUp extends Block {
-  constructor(props?: any) {
+  constructor(props?: PageType) {
     super(props);
   }
 
@@ -24,6 +24,7 @@ export class SignUp extends Block {
       label: "Войти",
       events: {
         click: (event: Event) => {
+          event.preventDefault();
           renderDom(Pages.LOGIN)
         }
       },

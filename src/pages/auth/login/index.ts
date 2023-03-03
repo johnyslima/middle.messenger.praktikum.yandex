@@ -4,10 +4,10 @@ import { LoginBody } from "../../../blocks";
 import template from "./login.hbs";
 import { LoginValidator, PasswordValidator } from "../../../validators";
 import { renderDom } from "../../../utils/Routers";
-import { Pages } from "../../../typings";
+import { Pages, PageType } from "../../../typings";
 
 export class Login extends Block {
-  constructor(props?: any) {
+  constructor(props?: PageType) {
     super(props);
   }
 
@@ -18,6 +18,7 @@ export class Login extends Block {
       label: "Нет аккаунта?",
       events: {
         click: (event: Event) => {
+          event.preventDefault();
           renderDom(Pages.SIGN_UP)
         }
       },

@@ -2,11 +2,11 @@ import Block from "../../utils/Block";
 import template from "./chat.hbs";
 import { Button, ButtonType, FormInput, InputTypeField, ChatList, ChatRoomHeader, ChatRoomContent, ChatRoomMessagePanel } from "../../components";
 import { roomList } from "../../data/mock";
-import { RoomType, ChildType, Pages } from "../../typings";
+import { RoomType, ChildType, Pages, PageType } from "../../typings";
 import { renderDom } from "../../utils/Routers";
 
 export class Chat extends Block {
-  constructor(props?: any) {
+  constructor(props?: PageType) {
     super(props);
   }
 
@@ -20,6 +20,7 @@ export class Chat extends Block {
       className: "chat-left-field__profile-link",
       events: {
         click: (event: Event) => {
+          event.preventDefault();
           renderDom(Pages.PROFILE)
         },
       },

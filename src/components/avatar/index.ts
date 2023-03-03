@@ -8,7 +8,7 @@ interface AvatarProps {
     click: (event: Event) => void;
   };
   className?: string;
-  img?: SVGElement | any;
+  img?: SVGElement | string;
 }
 
 export class Avatar extends Block {

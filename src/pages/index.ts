@@ -4,6 +4,7 @@ import { Chat } from "./chat";
 import { Profile } from "./profile";
 import { Error404 } from "./error/404";
 import { Error500 } from "./error/500";
+import { Main } from "./main";
 
 export {
   Login,
@@ -11,5 +12,6 @@ export {
   Chat,
   Profile,
   Error404,
-  Error500
+  Error500,
+  Main
 }

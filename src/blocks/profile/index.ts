@@ -13,7 +13,7 @@ import {
 import { Pages } from "../../typings/pagesType";
 
 export class ProfileBody extends Block {
-  constructor(props: any) {
+  constructor(props: unknown) {
     super(props);
   }
 
