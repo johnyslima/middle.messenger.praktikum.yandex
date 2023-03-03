@@ -1,58 +1,101 @@
 import Block from "../../../utils/Block";
-import { Button } from "../../../components/button";
-import { Form } from "../../../components/form";
-import { Link } from "../../../components/link";
-import { SignUpBody } from "../../../blocks/signUp/signUpBody";
+import { Button, ButtonType, Form, FormInput } from "../../../components";
+import { SignUpBody } from "../../../blocks";
+import {
+  LoginValidator,
+  PasswordValidator,
+  EmailValidator,
+  NameValidator,
+  PhoneValidator,
+  RepeatPasswordValidator,
+} from "../../../validators";
 import template from "../login/login.hbs";
+import { renderDom } from "../../../utils/Routers";
+import { Pages } from "../../../typings";
 
 export class SignUp extends Block {
-    constructor(props?: any) {
-        super(props);
-    }
+  constructor(props?: any) {
+    super(props);
+  }
 
-    init() {
-        const form = new Form({
-            template: template,
-            events: {
-              submit: (event: Event) => {
-                event.preventDefault();
-    
-                // const login = loginField.getValue();
-                // const password = passwordField.getValue();
-                
-                // if(login.length === 0 || password.length === 0) {
-                //   return;
-                // }
-                
-                console.log('here')
-              }
-            }, 
-            formHead: "Регистрация",
+  init() {
+    const formContent = new SignUpBody({});
+    const formLink = new Button({
+      label: "Войти",
+      events: {
+        click: (event: Event) => {
+          renderDom(Pages.LOGIN)
+        }
+      },
+      typeButton: ButtonType.LINK
+    });
+    const form = new Form({
+      template: template,
+      className: "form",
+      events: {
+        submit: (event: Event) => {
+          event.preventDefault();
 
-            formBody: new SignUpBody({}),
+          const emailField = formContent.children.EmailInput as FormInput;
+          const loginField = formContent.children.LoginInput as FormInput;
+          const firstNameField = formContent.children
+            .FirstNameInput as FormInput;
+          const secondNameField = formContent.children
+            .SecondNameInput as FormInput;
+          const phoneField = formContent.children.PhoneInput as FormInput;
+          const passwordField = formContent.children.PasswordInput as FormInput;
+          const passwordRepeatField = formContent.children
+            .PasswordRepeatInput as FormInput;
 
-            formFooterButton: new Button({
-                label: "Зарегистрироваться",
-                events: {
-                    click: (event) => this.onSubmit(event),
-                },
-                className: "button button--primary"
-            }),
-            
-            formFooterLink: new Link({
-                label: 'Войти'
-            })
+          let hasError: boolean = false;
+
+          if (!loginField.isValid(LoginValidator)) hasError = true;
+          if (!emailField.isValid(EmailValidator)) hasError = true;
+          if (!firstNameField.isValid(NameValidator)) hasError = true;
+          if (!secondNameField.isValid(NameValidator)) hasError = true;
+          if (!phoneField.isValid(PhoneValidator)) hasError = true;
+          if (!passwordField.isValid(PasswordValidator)) hasError = true;
+          if (
+            !RepeatPasswordValidator.validate(
+              passwordField,
+              passwordRepeatField
+            )
+          )
+            hasError = true;
+
+          if (hasError) {
+            console.error("Некоторые поля не проходят валидацию");
+            return;
+          }
+
+          console.log({
+            email: emailField.getValue(),
+            firstName: firstNameField.getValue(),
+            secondName: secondNameField.getValue(),
+            phone: phoneField.getValue(),
+            login: loginField.getValue(),
+            password: passwordField.getValue(),
           });
+        },
+      },
 
-          this.children.Form = form;
-    }
+      formHead: "Регистрация",
 
-    onSubmit(event) {
-        event?.preventDefault();
-        console.log("Clicks");
-    }
+      formBody: formContent,
 
-    render() {
-        return this.compile(template, { ...this.props });
-    }
+      formFooterButton: new Button({
+        label: "Зарегистрироваться",
+        className: "button button--primary",
+        typeButton: ButtonType.PRIMARY
+      }),
+
+      formFooterLink: formLink,
+    });
+
+    this.children.Form = form;
+  }
+
+  render() {
+    return this.compile(template, { ...this.props });
+  }
 }

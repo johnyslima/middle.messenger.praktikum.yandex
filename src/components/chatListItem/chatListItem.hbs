@@ -1,0 +1,28 @@
+<div class="chatList-item {{#if currentRoom}}current-item{{/if}}">
+  <div class="chatList-item__avatar">
+    <img src={{ avatar }} width="50" />
+  </div>
+  <div class="chatList-item-info">
+    <div class="chatList-item-info__row">
+      <div class="chatList-item-info__name">
+        {{{roomName}}}
+      </div>
+      <div class="chatList-item-info__time">
+        {{ time }}
+      </div>
+    </div>
+    <div class="chatList-item-info__row">
+      <div class="chatList-item-info__last-message">
+        {{ lastMessage }}
+      </div>
+      {{#if countUnread}}
+      <div class="chatList-item-info__count-unread">
+        <span>
+          {{ countUnread }}
+        </span>
+      </div>
+      {{/if}}
+    </div>
+    <div class="chatList-item-info__row"></div>
+  </div>
+</div>

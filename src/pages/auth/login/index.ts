@@ -1,58 +1,67 @@
 import Block from "../../../utils/Block";
-import { Button } from "../../../components/button";
-import { Form } from "../../../components/form";
-import { Link } from "../../../components/link";
-import { LoginBody } from "../../../blocks/auth/loginBody";
+import { Button, ButtonType, Form, FormInput } from "../../../components";
+import { LoginBody } from "../../../blocks";
 import template from "./login.hbs";
+import { LoginValidator, PasswordValidator } from "../../../validators";
+import { renderDom } from "../../../utils/Routers";
+import { Pages } from "../../../typings";
 
 export class Login extends Block {
-    constructor(props?: any) {
-        super(props);
-    }
+  constructor(props?: any) {
+    super(props);
+  }
 
-    init() {
-        const form = new Form({
-            template: template,
-            events: {
-              submit: (event: Event) => {
-                event.preventDefault();
-    
-                // const login = loginField.getValue();
-                // const password = passwordField.getValue();
-                
-                // if(login.length === 0 || password.length === 0) {
-                //   return;
-                // }
-                
-                console.log('here')
-              }
-            }, 
-            formHead: "Вход",
+  init() {
+    const formContent = new LoginBody({});
 
-            formBody: new LoginBody({}),
+    const formLink = new Button({
+      label: "Нет аккаунта?",
+      events: {
+        click: (event: Event) => {
+          console.log('hereLink')
+          renderDom(Pages.SIGN_UP)
+        }
+      },
+      typeButton: ButtonType.LINK
+    });
 
-            formFooterButton: new Button({
-                label: "Авторизоваться",
-                events: {
-                    click: (event) => this.onSubmit(event),
-                },
-                className: "button button--primary"
-            }),
-            
-            formFooterLink: new Link({
-                label: 'Нет аккаунта?'
-            })
-          });
+    const form = new Form({
+      template: template,
+      className: "form",
+      events: {
+        submit: (event: Event) => {
+          event.preventDefault();
+          const loginField = formContent.children.LoginInput as FormInput;
+          const passwordField = formContent.children.PasswordInput as FormInput;
 
-          this.children.Form = form;
-    }
+          if(loginField.isValid(LoginValidator) && passwordField.isValid(PasswordValidator)) {
+            console.log({
+              login: loginField.getValue(),
+              password: passwordField.getValue(),
+            });
+            setTimeout(() => renderDom(Pages.CHAT), 1000)
+          } else {
+            console.error('Некоторые поля не проходят валидацию')
+          }
+        },
+      },
+      formHead: "Вход",
 
-    onSubmit(event) {
-        event?.preventDefault();
-        console.log("Clicks", this.children.Form.children);
-    }
+      formBody: formContent,
 
-    render() {
-        return this.compile(template, { ...this.props });
-    }
+      formFooterButton: new Button({
+        label: "Авторизоваться",
+        className: "button button--primary",
+        typeButton: ButtonType.PRIMARY
+      }),
+
+      formFooterLink: formLink,
+    });
+
+    this.children.Form = form;
+  }
+
+  render() {
+    return this.compile(template, { ...this.props });
+  }
 }

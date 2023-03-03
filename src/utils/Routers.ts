@@ -1,29 +1,26 @@
-// import main from "./src/index.hbs";
-import { Login } from "../pages/auth/login";
-import { SignUp } from "../pages/auth/signUp";
+import { Login, SignUp, Profile, Chat, Error404, Error500 } from "../pages";
 
 const ROUTES = {
-//   main: main,
   login: Login,
   signUp: SignUp,
-  // chat: chat,
-  // profile: profile,
-  // profileEdit: profile,
-  // profileChangePassword: profile,
-  // error404: error,
-  // error500: error,
+  chat: Chat,
+  profile: Profile,
+  profileEdit: Profile,
+  profileChangePassword: Profile,
+  error404: Error404,
+  error500: Error500
 };
 
-export const render = (route: keyof typeof ROUTES) => {
-  const app = document.querySelector('#root')!
-  app.innerHTML = ''
+export const renderDom = (route: keyof typeof ROUTES) => {
+  const app = document.querySelector("#root")!;
+  app.innerHTML = "";
 
-  const PageComponent = ROUTES[route]
-  const page = new PageComponent()
+  const PageComponent = ROUTES[route];
+  const data = { currentPage: route };
+  const page = new PageComponent(data);
 
   if (page.element) {
-    app.appendChild(page.element)
-    page.dispatchComponentDidMount()
+    app.appendChild(page.element);
+    page.dispatchComponentDidMount();
   }
-}
-
+};

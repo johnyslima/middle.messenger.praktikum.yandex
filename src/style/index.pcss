@@ -1,44 +1,50 @@
 @import "../components/button/button.pcss";
-@import "../layouts/form-layout/form-layout.pcss";
-@import "../components/input/form-input/input.pcss";
+@import "../components/input/input.pcss";
 @import "../components/input/inputProfile.pcss";
-@import "../components/modal/modal.pcss";
-@import "../components/search/search.pcss";
-@import "../components/usersList/usersList.pcss";
-@import "../components/usersListItem/usersListItem.pcss";
-@import "../components/message/messageCloud/messageCloud.pcss";
-@import "../components/message/messageEnter/messageEnter.pcss";
+@import "../components/input/inputSearch.pcss";
+@import "../components/input/inputMessageEnter.pcss";
+@import "../components/form/form-layout.pcss";
+@import "../components/chatList/chatList.pcss";
+@import "../components/chatListItem/chatListItem.pcss";
+
+@import "../components/message/messageCloud.pcss";
 @import "../pages/auth/login/login.pcss";
 @import "../pages/chat/chat.pcss";
 @import "../pages/profile/profile.pcss";
-@import "../pages/error/errorPage.pcss";
+@import "../pages/error/404/errorPage.pcss";
 @import "./_variables.pcss";
 
 @font-face {
-    font-family: Inter;
-    src: url("../assets/fonts/Inter-Regular.otf");
+  font-family: Inter;
+  src: url("../assets/fonts/Inter-Regular.otf");
 }
 
 body {
-    background-color: var(--backgroundColor);
-    font-family: "Inter";
-    height: 100vh;
-    margin: 0;
-    color: var(--textColorRegular);
+  background-color: var(--backgroundColor);
+  font-family: "Inter";
+  height: 100vh;
+  margin: 0;
+  color: var(--textColorRegular);
 }
 
 #root,
 main {
-    height: inherit;
+  height: inherit;
 }
 
 .main {
-    padding: 20px;
-    span {
-        cursor: pointer;
+  padding: 20px;
+  span {
+    cursor: pointer;
 
-        &:hover {
-            color: var(--borderColor);
-        }
+    &:hover {
+      color: var(--borderColor);
     }
+  }
+}
+
+.error-valid {
+  color: red;
+  padding-top: 7px;
+  font-size: 10px;
 }

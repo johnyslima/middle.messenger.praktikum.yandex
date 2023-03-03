@@ -1,16 +1,16 @@
-<form class="form">
-    <div class="form-head">
-        {{{formHead}}}
+<form class={{className}}>
+  <div class="form-head">
+    {{{formHead}}}
+  </div>
+  {{{formBody}}}
+  <div class="form-footer">
+    <div class="form-footer__button">
+      {{{formFooterButton}}}
     </div>
-    {{{formBody}}}
-    <div class="form-footer">
-        <div class="form-footer__button">
-            {{{formFooterButton}}}
-        </div>
-        <div class="form-footer__link">
-            {{!-- <a onclick="goToPage('signin')">Нет аккаунта?</a> --}}
-            {{{formFooterLink}}}
-        </div>
+    <div class="form-footer__link">
+      {{!-- <a onclick="goToPage('signin')">Нет аккаунта?</a> --}}
+      {{{formFooterLink}}}
+    </div>
 
-    </div>
+  </div>
 </form>
