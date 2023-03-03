@@ -23,7 +23,7 @@ export class ChatRoomHeader extends Block {
       className: "chat-room-header__name__context-menu-button",
       events: {
         click: (event: Event) => {
-          console.log("here");
+          console.log("buttonContextMenu");
         },
       },
       icon: kebabMenuIconSvg,

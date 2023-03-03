@@ -1,5 +1,7 @@
 import { Button, ButtonType } from "../../../components";
+import { Pages } from "../../../typings";
 import Block from "../../../utils/Block";
+import { renderDom } from "../../../utils/Routers";
 import template from "./errorPage.hbs";
 
 export class Error404 extends Block {
@@ -13,7 +15,7 @@ export class Error404 extends Block {
       className: "status-error-page__back-link",
       events: {
         click: (event: Event) => {
-          console.log('hereLink')
+          renderDom(Pages.CHAT)
         }
       },
       typeButton: ButtonType.LINK

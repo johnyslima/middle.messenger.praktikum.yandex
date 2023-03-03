@@ -159,7 +159,6 @@ export class Profile extends Block {
       events: {
         submit: (event: Event) => {
           event.preventDefault();
-          console.log("erere");
         },
       },
       formBody: formContent,

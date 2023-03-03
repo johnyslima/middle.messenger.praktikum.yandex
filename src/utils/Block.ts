@@ -130,8 +130,6 @@ class Block {
       return;
     }
 
-    console.log('block', Object.assign(this.props, nextProps))
-
     Object.assign(this.props, nextProps);
   };
 
@@ -162,9 +160,6 @@ class Block {
       return;
     }
 
-    // console.log('child', child)
-    // console.log('stub', stub)
-    // console.log('child content',child.getContent())
     if(!child.getContent()) {
 
     }

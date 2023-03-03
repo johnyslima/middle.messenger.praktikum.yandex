@@ -14,8 +14,6 @@ export class EmailValidator extends Validator {
       this.addError(component, EmailErrorText.Incorrect);
       return false;
     }
-
-    console.log('here', component)
     this.removeError(component);
     return true;
   }

@@ -18,7 +18,6 @@ export class Login extends Block {
       label: "Нет аккаунта?",
       events: {
         click: (event: Event) => {
-          console.log('hereLink')
           renderDom(Pages.SIGN_UP)
         }
       },
