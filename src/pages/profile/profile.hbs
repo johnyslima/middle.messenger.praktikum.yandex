@@ -1,109 +1,111 @@
 <div class="profile-page">
-  <div class="profile-page__button-back" onclick="goToPage('main')">
-    <div><img src={{ icons.arrowLeftIconSvg }} alt=""></div>
-  </div>
+  {{{ButtonBack}}}
   <div class="profile-page__form">
-    <div class="profile-page__form-avatar">
-      <div class="profile-page__form-avatar-edit">
-        <span>
-          Поменять аватар
-        </span>
-      </div>
-      <div>
-        <img src={{ icons.emptyPictIconSvg }} alt="">
-      </div>
-    </div>
-    <div class="profile-page__form-name">
-      Иван
-    </div>
-    {{#ifEquals page "profile"}}
-    <div class="profile-page__form-info">
-      {{else}}
-      <form class="profile-page__form-info">
-        {{/ifEquals}}
 
-        {{#ifEquals page "profileChangePassword"}}
-        <div class="profile-page__form-info__row">
-          <div class="profile-page__form-info__label">Старый пароль</div>
-          {{> inputProfile type="text" inputName="old_password" value="•••••••••" }}
-        </div>
-        <div class="profile-page__form-info__row">
-          <div class="profile-page__form-info__label">Новый пароль</div>
-          {{> inputProfile type="text" inputName="new_password" value="•••••••••••" }}
-        </div>
-        <div class="profile-page__form-info__row">
-          <div class="profile-page__form-info__label">Повторите новый пароль</div>
-          {{> inputProfile type="text" inputName="repeat_password" value="•••••••••••" }}
-        </div>
-        {{else}}
-        <div class="profile-page__form-info__row">
-          <div class="profile-page__form-info__label">Почта</div>
-          {{#ifEquals page "profile"}}
-          <div class="profile-page__form-info__value">pochta@yandex.ru</div>
-          {{else}}
-          {{> inputProfile type="text" inputName="email" value="pochta@yandex.ru" }}
-          {{/ifEquals}}
-        </div>
-        <div class="profile-page__form-info__row">
-          <div class="profile-page__form-info__label">Логин</div>
-          {{#ifEquals page "profile"}}
-          <div class="profile-page__form-info__value">ivanivanov</div>
-          {{else}}
-          {{> inputProfile type="text" inputName="login" value="ivanivanov" }}
-          {{/ifEquals}}
-        </div>
-        <div class="profile-page__form-info__row">
-          <div class="profile-page__form-info__label">Имя</div>
-          {{#ifEquals page "profile"}}
-          <div class="profile-page__form-info__value">Иван</div>
-          {{else}}
-          {{> inputProfile type="text" inputName="first_name" value="Иван" }}
-          {{/ifEquals}}
-        </div>
-        <div class="profile-page__form-info__row">
-          <div class="profile-page__form-info__label">Фамилия</div>
-          {{#ifEquals page "profile"}}
-          <div class="profile-page__form-info__value">Иванов</div>
-          {{else}}
-          {{> inputProfile type="text" inputName="second_name" value="Иванов" }}
-          {{/ifEquals}}
-        </div>
-        <div class="profile-page__form-info__row">
-          <div class="profile-page__form-info__label">Имя в чате</div>
-          {{#ifEquals page "profile"}}
-          <div class="profile-page__form-info__value">Иван</div>
-          {{else}}
-          {{> inputProfile type="text" inputName="display_name" value="Иван" }}
-          {{/ifEquals}}
-        </div>
-        <div class="profile-page__form-info__row">
-          <div class="profile-page__form-info__label">Телефон</div>
-          {{#ifEquals page "profile"}}
-          <div class="profile-page__form-info__value">+7 (909) 967 30 30</div>
-          {{else}}
-          {{> inputProfile type="text" inputName="phone" value="+7-(909)-967-30-30" }}
-          {{/ifEquals}}
-        </div>
-        {{/ifEquals}}
-
-
-        {{#ifEquals page "profile"}}
-    </div>
-    {{else}}
-    </form>
-    {{/ifEquals}}
-
-    {{#ifEquals page "profile"}}
+    {{{Avatar}}}
+    {{{Form}}}
     <div class="profile-page__form-actions">
-      <div class="profile-page__form-actions__edit" onclick="goToPage('profileEdit')">Изменить данные</div>
+      {{{ButtonChangeData}}}
+      {{{ButtonChangePassword}}}
+      {{{ButtonLogout}}}
+      {{!-- <div class="profile-page__form-actions__edit" onclick="goToPage('profileEdit')">Изменить данные</div>
       <div class="profile-page__form-actions__edit" onclick="goToPage('profileChangePassword')">Изменить пароль</div>
-      <div class="profile-page__form-actions__logout" onclick="goToPage('main')">Выйти</div>
+      <div class="profile-page__form-actions__logout" onclick="goToPage('main')">Выйти</div> --}}
     </div>
+    <div class="profile-page__form-save-button">
+      {{!-- {{> button label=profileEdit.buttonLabel action="goToPage('chat')" }} --}}
+      {{{ButtonSave}}}
+    </div>
+  </div>
+
+  {{!-- {{#ifEquals page "profile"}}
+  <div class="profile-page__form-info">
+    {{else}}
+    <form class="profile-page__form-info">
+      {{/ifEquals}}
+
+      {{#ifEquals page "profileChangePassword"}}
+      <div class="profile-page__form-info__row">
+        <div class="profile-page__form-info__label">Старый пароль</div>
+        {{> inputProfile type="text" inputName="old_password" value="•••••••••" }}
+      </div>
+      <div class="profile-page__form-info__row">
+        <div class="profile-page__form-info__label">Новый пароль</div>
+        {{> inputProfile type="text" inputName="new_password" value="•••••••••••" }}
+      </div>
+      <div class="profile-page__form-info__row">
+        <div class="profile-page__form-info__label">Повторите новый пароль</div>
+        {{> inputProfile type="text" inputName="repeat_password" value="•••••••••••" }}
+      </div>
+      {{else}}
+      <div class="profile-page__form-info__row">
+        <div class="profile-page__form-info__label">Почта</div>
+        {{#ifEquals page "profile"}}
+        <div class="profile-page__form-info__value">pochta@yandex.ru</div>
+        {{else}}
+        {{> inputProfile type="text" inputName="email" value="pochta@yandex.ru" }}
+        {{/ifEquals}}
+      </div>
+      <div class="profile-page__form-info__row">
+        <div class="profile-page__form-info__label">Логин</div>
+        {{#ifEquals page "profile"}}
+        <div class="profile-page__form-info__value">ivanivanov</div>
+        {{else}}
+        {{> inputProfile type="text" inputName="login" value="ivanivanov" }}
+        {{/ifEquals}}
+      </div>
+      <div class="profile-page__form-info__row">
+        <div class="profile-page__form-info__label">Имя</div>
+        {{#ifEquals page "profile"}}
+        <div class="profile-page__form-info__value">Иван</div>
+        {{else}}
+        {{> inputProfile type="text" inputName="first_name" value="Иван" }}
+        {{/ifEquals}}
+      </div>
+      <div class="profile-page__form-info__row">
+        <div class="profile-page__form-info__label">Фамилия</div>
+        {{#ifEquals page "profile"}}
+        <div class="profile-page__form-info__value">Иванов</div>
+        {{else}}
+        {{> inputProfile type="text" inputName="second_name" value="Иванов" }}
+        {{/ifEquals}}
+      </div>
+      <div class="profile-page__form-info__row">
+        <div class="profile-page__form-info__label">Имя в чате</div>
+        {{#ifEquals page "profile"}}
+        <div class="profile-page__form-info__value">Иван</div>
+        {{else}}
+        {{> inputProfile type="text" inputName="display_name" value="Иван" }}
+        {{/ifEquals}}
+      </div>
+      <div class="profile-page__form-info__row">
+        <div class="profile-page__form-info__label">Телефон</div>
+        {{#ifEquals page "profile"}}
+        <div class="profile-page__form-info__value">+7 (909) 967 30 30</div>
+        {{else}}
+        {{> inputProfile type="text" inputName="phone" value="+7-(909)-967-30-30" }}
+        {{/ifEquals}}
+      </div>
+      {{/ifEquals}} --}}
+
+
+      {{!-- {{#ifEquals page "profile"}}
   </div>
   {{else}}
-  <div class="profile-page__form-save-button">
-    {{> button label=profileEdit.buttonLabel action="goToPage('chat')" }}
+  </form>
+  {{/ifEquals}} --}}
+
+  {{!-- {{#ifEquals page "profile"}}
+  <div class="profile-page__form-actions">
+    <div class="profile-page__form-actions__edit" onclick="goToPage('profileEdit')">Изменить данные</div>
+    <div class="profile-page__form-actions__edit" onclick="goToPage('profileChangePassword')">Изменить пароль</div>
+    <div class="profile-page__form-actions__logout" onclick="goToPage('main')">Выйти</div>
   </div>
-  {{/ifEquals}}
+</div>
+{{else}}
+<div class="profile-page__form-save-button">
+  {{> button label=profileEdit.buttonLabel action="goToPage('chat')" }}
+</div>
+{{/ifEquals}} --}}
 
 </div>

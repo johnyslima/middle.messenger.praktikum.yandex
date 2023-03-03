@@ -25,6 +25,17 @@
 
     &__search {
       padding: 0px 10px 15px;
+      margin-right: 10px;
+
+      .input-field {
+        border: 1px solid var(--borderColor);
+        border-radius: 12px;
+        padding-left: 10px;
+
+        &:focus {
+          border-width: 2px;
+        }
+      }
     }
   }
 
@@ -39,21 +50,33 @@
       display: flex;
       align-items: center;
 
+      &__avatar {
+        margin-right: 10px;
+        width: 34px;
+        height: 34px;
+        background-color: #efefef;
+        border-radius: 50%;
+      }
+
       &__name {
         margin-left: 10px;
         display: flex;
         width: 100%;
         justify-content: space-between;
+        align-items: center;
 
         &__context-menu-button {
-          width: 25px;
-          height: 25px;
+          width: 30px;
+          height: 30px;
           border-radius: 100%;
           display: flex;
           justify-content: center;
+          align-items: center;
+          background-color: var(--backgroundColor);
+          border: 0px;
 
           &:hover {
-            background-color: var(--shadowColor);
+            background-color: var(--primaryColor);
           }
         }
       }

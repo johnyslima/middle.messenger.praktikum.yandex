@@ -1,0 +1,22 @@
+{
+  "extends": "stylelint-config-recommended",
+  "rules": {
+    "color-hex-case": "lower",
+    "at-rule-no-unknown": null,
+    "property-no-unknown": null,
+    "no-empty-source": null,
+    "block-no-empty": null,
+    "no-descending-specificity": null
+  },
+  "ignoreFiles": [
+    "src/index.html",
+    "build/*",
+    "dist/*",
+    "**/*.js",
+    "**/*.ts",
+    "**/*.hbs",
+    "**/*.json",
+    "**/*.yml",
+    "**/*.md"
+  ]
+} 
