@@ -14,7 +14,7 @@ interface ButtonProps {
     click: (event: Event) => void;
   };
   className?: string;
-  icon?: any;
+  icon?: SVGElement;
   typeButton?: string;
 }
 

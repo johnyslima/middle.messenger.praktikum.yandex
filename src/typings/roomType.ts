@@ -6,7 +6,7 @@ export type MessageType = {
 
 export type RoomType = {
   id?: string | number;
-  avatar?: any;
+  avatar?: SVGElement;
   roomName?: string;
   lastMessage?: string;
   countUnread: number;

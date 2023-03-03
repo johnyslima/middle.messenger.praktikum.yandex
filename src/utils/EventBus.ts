@@ -1,7 +1,8 @@
+type CallbackType = (...args: any[]) => void;
 export class EventBus {
-  private readonly listeners: Record<string, Array<() => void>> = {};
+  private readonly listeners: Record<string, CallbackType[]> = {};
 
-  on(event: any, callback: any) {
+  on(event: string, callback: CallbackType) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -9,7 +10,7 @@ export class EventBus {
     this.listeners[event].push(callback);
   }
 
-  off(event: any, callback: any) {
+  off(event: string, callback: CallbackType) {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
@@ -19,12 +20,12 @@ export class EventBus {
     );
   }
 
-  emit(event: any, ...args: any) {
+  emit(event: string, ...args: any[]) {
     if (!this.listeners[event]) {
       throw new Event(`Нет события: ${event}`);
     }
 
-    this.listeners[event].forEach(listener => {
+    this.listeners[event].forEach((listener: CallbackType) => {
       listener(...args);
     });
   }
