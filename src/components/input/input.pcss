@@ -8,7 +8,6 @@
   position: relative;
   outline: 0;
   outline-offset: 0;
-  position: relative;
   padding: 8px 0 0;
   margin-top: 10px;
 
@@ -47,6 +46,11 @@ input:-internal-autofill-selected {
     cursor: text;
     top: 20px;
   }
+
+  &:required,
+  &:invalid {
+    box-shadow: none;
+  }
 }
 
 .input-placeholder {
@@ -70,10 +74,4 @@ input:-internal-autofill-selected {
   }
   padding-bottom: 6px;
   border-width: 3px;
-}
-.input-field {
-  &:required,
-  &:invalid {
-    box-shadow: none;
-  }
 }
