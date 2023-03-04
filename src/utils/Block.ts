@@ -1,7 +1,10 @@
 import { EventBus } from "./EventBus";
 import { nanoid } from "nanoid";
 
-class Block<T extends Record<string, any> = any, E extends HTMLElement = HTMLElement> {
+class Block<
+  T extends Record<string, any> = any,
+  E extends HTMLElement = HTMLElement
+> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -37,8 +40,8 @@ class Block<T extends Record<string, any> = any, E extends HTMLElement = HTMLEle
     const props: T = {} as T;
     const children: Record<string, Block | Block[]> = {};
 
-    Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if(Array.isArray(value) && value.every(el => el instanceof Block)) {
+    Object.entries(childrenAndProps).forEach(([key, value]: [string, Block]) => {
+      if (Array.isArray(value) && value.every((el) => el instanceof Block)) {
         children[key] = value;
       } else if (value instanceof Block) {
         children[key] = value;
@@ -51,7 +54,7 @@ class Block<T extends Record<string, any> = any, E extends HTMLElement = HTMLEle
   }
 
   _addEvents() {
-    const { events = {} } = this.props
+    const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName: string) => {
       this._element?.addEventListener(eventName, events[eventName]);
@@ -59,7 +62,7 @@ class Block<T extends Record<string, any> = any, E extends HTMLElement = HTMLEle
   }
 
   _removeEvents() {
-    const { events = {} } = this.props
+    const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName: string) => {
       this._element?.removeEventListener(eventName, events[eventName]);
@@ -150,8 +153,7 @@ class Block<T extends Record<string, any> = any, E extends HTMLElement = HTMLEle
       return;
     }
 
-    if(!child.getContent()) {
-
+    if (!child.getContent()) {
     }
     child.getContent()?.append(...Array.from(stub.childNodes));
 
@@ -220,7 +222,17 @@ class Block<T extends Record<string, any> = any, E extends HTMLElement = HTMLEle
     });
   }
 
-   getValue(): string { return ""}
+  getValue(): string {
+    return "";
+  }
+
+  show() {
+    this.getContent()!.style.display = "block";
+  }
+
+  hide() {
+    this.getContent()!.style.display = "none";
+  }
 }
 
 export default Block;
