@@ -11,14 +11,21 @@ import {
   PhoneValidator,
 } from "../../validators";
 import { Pages } from "../../typings/pagesType";
+import { withStore, Store } from "../../utils/Store";
 
-export class ProfileBody extends Block {
-  constructor(props: unknown) {
-    super(props);
-  }
+export default class ProfileBodyBase extends Block {
+  // constructor(props: unknown) {
+  //   console.log('props', props)
+  //   super(props);
+  // }
+
+  // componentDidUpdate(_oldProps: any, _newProps: any): boolean {
+  //   console.log('oldsProps new props', _oldProps, _newProps)
+  //   return true;
+  // }
 
   private getTemplate() {
-    switch (this.props.currentPage) {
+    switch (window.location.pathname) {
       case Pages.PROFILE:
         return template;
         break;
@@ -32,10 +39,11 @@ export class ProfileBody extends Block {
   }
 
   private isEditable() {
-    return this.props.currentPage === Pages.PROFILE ? false : true
+    return window.location.pathname === Pages.PROFILE ? false : true
   }
 
   init() {
+    console.log(this.props.data.login);
     let child: ChildType = this.children;
     const emailField: FormInput = new FormInput({
       placeholder: "Почта",
@@ -56,7 +64,8 @@ export class ProfileBody extends Block {
       type: "text",
       typeField: InputTypeField.PROFILE,
       editable: this.isEditable(),
-      value: "ivanivanov",
+      value:this.props.data.login,
+      // value: "ivanivanov",
       events: {
         focusout: () => {
           loginField.isValid(LoginValidator);

@@ -2,8 +2,8 @@ import Block from "../../utils/Block";
 import template from "./chat.hbs";
 import { Button, ButtonType, FormInput, InputTypeField, ChatList, ChatRoomHeader, ChatRoomContent, ChatRoomMessagePanel } from "../../components";
 import { roomList } from "../../data/mock";
-import { RoomType, ChildType, Pages, PageType } from "../../typings";
-import { renderDom } from "../../utils/Routers";
+import { RoomType, ChildType, PageType } from "../../typings";
+import router from "../../routing/router";
 
 export class Chat extends Block {
   constructor(props?: PageType) {
@@ -21,7 +21,8 @@ export class Chat extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.PROFILE)
+          router.go('/profile');
+          // renderDom(Pages.PROFILE)
         },
       },
       typeButton: ButtonType.LINK,

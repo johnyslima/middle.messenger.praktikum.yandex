@@ -6,6 +6,7 @@
 @import "../components/form/form-layout.pcss";
 @import "../components/chatList/chatList.pcss";
 @import "../components/chatListItem/chatListItem.pcss";
+@import "../components/tootlip/tooltip.pcss";
 @import "../components/message/messageCloud.pcss";
 @import "../pages/auth/login/login.pcss";
 @import "../pages/chat/chat.pcss";
@@ -50,6 +51,7 @@ main {
 }
 
 .main {
+  z-index: 1;
   padding: 20px;
   span {
     cursor: pointer;
@@ -64,4 +66,44 @@ main {
   color: red;
   padding-top: 7px;
   font-size: 10px;
+}
+
+.loader {
+  main {
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+  }
+}
+
+.loader:before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: block;
+  margin: 15px auto;
+  z-index: 1000000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background: rgba(46, 6, 6, 0.185);
+  box-shadow: -24px 0 #fff, 24px 0 #fff;
+  box-sizing: border-box;
+  animation: shadowPulse 2s linear infinite;
+}
+
+@keyframes shadowPulse {
+  33% {
+    background: #fff;
+    box-shadow: -24px 0 #07847e, 24px 0 #fff;
+  }
+  66% {
+    background: #633bbc;
+    box-shadow: -24px 0 #fff, 24px 0 #fff;
+  }
+  100% {
+    background: #fff;
+    box-shadow: -24px 0 #fff, 24px 0 #07847e;
+  }
 }

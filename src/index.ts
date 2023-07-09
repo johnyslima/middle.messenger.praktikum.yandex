@@ -6,33 +6,67 @@ import Router from "./routing/router";
 import {
   Login,
   SignUp,
-  Profile,
+  ProfilePage,
   Chat,
   Error404,
   Error500,
   Main,
-} from "./pages/";
+} from "./pages";
+import LoginController from "./controllers/LoginController";
+import { Pages } from "./typings";
 
-const router = new Router("#root");
-console.log("router", router);
-router
+export function removeBodyLoader() {
+  (document.querySelector('body') as HTMLElement).classList.remove(
+    'loader',
+  );
+}
+
+export function addBodyLoader() {
+  (document.querySelector('body') as HTMLElement).classList.add(
+    'loader',
+  );
+}
+
+window.addEventListener("DOMContentLoaded", async () => {
+  
+  addBodyLoader();
+  Router
   .use("/", Main)
   .use("/login", Login)
   .use("/signUp", SignUp)
-  .use("/profile", Profile)
+  .use("/profile", ProfilePage)
+  .use("/profileEdit", ProfilePage)
+  .use("/profileChangePassword", ProfilePage)
   .use("/chat", Chat)
   .use("/404", Error404)
   .use("/500", Error500)
-  .start();
+  // .start();
 
-// window.addEventListener("DOMContentLoaded", () => {
-//   console.log('here')
-//   // renderDom('main');
-//   // renderDom('login');
-//   // renderDom('error404');
-//   // render('profile');
-//   // render('profileEdit');
-//   // render('profileChangePassword');
-//   // render('signUp');
-//   // renderDom('login');
-// });
+  
+  let isProtectedRoute = true;
+
+  switch (window.location.pathname) {
+    case Pages.LOGIN:
+    case Pages.SIGN_UP:
+      isProtectedRoute = false;
+      break;
+  }
+
+  try {
+    await LoginController.fetchUser();
+    Router.start();
+    if (!isProtectedRoute) {
+    // Router.go(window.location.pathname)
+      Router.go("/profile")
+    }
+    removeBodyLoader();
+  } catch (e) {
+    console.log('e', e)
+    Router.start();
+    if (isProtectedRoute) {
+      Router.go("/login");
+      // Router.go(Routes.SignIn);
+    }
+    removeBodyLoader();
+  }
+});

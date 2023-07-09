@@ -1,71 +1,124 @@
 import Block from "../utils/Block";
-import Route from "./route";
 
-export default class Router {
-  public routes: Route[] = [];
-  public history: History = window.history;
-  private _currentRoute: Route | null | undefined = null;
-  private _rootQuery: string = "";
-  static __instance: Router;
-  constructor(rootQuery: string) {
+export interface BlockConstructable<P extends Record<string, any> = any> {
+  new(props: P): Block<P>;
+}
+
+function isEqual(lhs: string, rhs: string): boolean {
+  return lhs === rhs;
+}
+
+function render(query: string, block: Block) {
+  const root = document.querySelector(query);
+
+  if (root === null) {
+    throw new Error(`root not found by selector "${query}"`);
+  }
+
+  root.innerHTML = '';
+
+  root.append(block.getContent()!);
+
+  return root;
+}
+
+export interface BlockProps<P extends Record<string, any> = any> {
+  new(props: P): Block<P>;
+}
+
+class Route {
+  private block: Block | null = null;
+
+  constructor(
+    private pathname: string,
+    private readonly blockClass: BlockConstructable,
+    private readonly query: string) {
+  }
+
+  leave() {
+    this.block = null;
+  }
+
+  match(pathname: string) {
+    return isEqual(pathname, this.pathname);
+  }
+
+  render() {
+    if (!this.block) {
+      this.block = new this.blockClass({});
+
+      render(this.query, this.block);
+      return;
+    }
+  }
+}
+
+class Router {
+  private static __instance: Router;
+  private routes: Route[] = [];
+  private currentRoute: Route | null = null;
+  private history = window.history;
+
+  constructor(private readonly rootQuery: string) {
     if (Router.__instance) {
       return Router.__instance;
     }
 
     this.routes = [];
-    this.history = window.history;
-    this._currentRoute = null;
-    this._rootQuery = rootQuery;
 
     Router.__instance = this;
   }
 
-  use(pathname: string, block: typeof Block) {
-    const route = new Route(pathname, block, { rootQuery: this._rootQuery });
-
+  public use(pathname: string, block: BlockConstructable) {
+    const route = new Route(pathname, block, this.rootQuery);
     this.routes.push(route);
 
     return this;
   }
 
-  start() {
-    window.onpopstate = ((event: PopStateEvent) => {
-      console.log(event);
-      this._onRoute(event?.currentTarget?.location.pathname);
-    }).bind(this);
+  public start() {
+    window.onpopstate = (event: PopStateEvent) => {
+      const target = event.currentTarget as Window;
+
+      this._onRoute(target.location.pathname);
+    }
 
     this._onRoute(window.location.pathname);
   }
 
-  _onRoute(pathname: string) {
+  private _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
+
     if (!route) {
       return;
     }
 
-    if (this._currentRoute && this._currentRoute !== route) {
-      this._currentRoute.leave();
+    if (this.currentRoute && this.currentRoute !== route) {
+      this.currentRoute.leave();
     }
 
-    this._currentRoute = route;
+    this.currentRoute = route;
+
     route.render();
-    // route.render(route, pathname);
   }
 
-  go(pathname: string) {
-    this.history.pushState({}, "", pathname);
+  public go(pathname: string) {
+    this.history.pushState({}, '', pathname);
+
     this._onRoute(pathname);
   }
 
-  back() {
+  public back() {
     this.history.back();
   }
 
-  forward() {
+  public forward() {
     this.history.forward();
   }
 
-  getRoute(pathname: string) {
-    return this.routes.find((route) => route.match(pathname));
+  private getRoute(pathname: string) {
+    return this.routes.find(route => route.match(pathname));
   }
 }
+
+export default new Router('#root');

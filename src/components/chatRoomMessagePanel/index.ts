@@ -3,9 +3,14 @@ import Block from "../../utils/Block";
 import { Button, ButtonType } from "../button";
 import addIconSvg from "../../assets/icons/add_icon.svg";
 import arrowRightIconSvg from "../../assets/icons/arrow_right.svg";
+import photoAttachIconSvg from "../../assets/icons/photo_attach.svg";
+import fileAttachIconSvg from "../../assets/icons/file_attach.svg";
+import locationAttachIconSvg from "../../assets/icons/location_attach.svg";
 import template from "./chatRoomMessagePanel.hbs";
 import { FormInput, InputTypeField } from "../input";
 import { MessageValidator, NameValidator } from "../../validators";
+import Tooltip from "../tootlip";
+import TooltipAction from "../tooltipAction";
 
 interface ChatRoomHeaderProps {
   avatar?: string;
@@ -21,19 +26,96 @@ export class ChatRoomMessagePanel extends Block {
   init() {
     let child: ChildType = this.children;
     
-    const buttonAttachment = new Button({
-      className: "chat-room-header__name__context-menu-button",
-      events: {
-        click: (event: Event) => {
-          console.log("buttonAttachment");
-        },
+    
+
+    const mediaAction = new Tooltip({
+      state: {
+        show: false
       },
-      icon: addIconSvg,
-      typeButton: ButtonType.ICON,
-    });
+      className: "chat-room-header__name__context-attachment-tooltip",
+      actions: [
+          new TooltipAction({
+              icon: photoAttachIconSvg,
+              iconClassName: ' ib-22px primary-color',
+              text: 'Фото или Видео',
+              events: {
+                  click: () => {
+                      // this._modal.setProps({
+                      //     title: 'Отправить Фото или Видео',
+                      //     state: 'show',
+                      //     body: new Browse({
+                      //         onSubmit: (e: SubmitEvent) => {
+                      //             console.log('Отправить Фото или Видео')
+                      //         }
+                      //     })
+                      // })
+                      console.log('Фото или Видео')
+                  }
+              }
+          }),
+          new TooltipAction({
+            icon: fileAttachIconSvg,
+            iconClassName: ' ib-22px primary-color',
+            text: 'Файл',
+            events: {
+                click: () => {
+                    // this._modal.setProps({
+                    //     title: 'Отправить Фото или Видео',
+                    //     state: 'show',
+                    //     body: new Browse({
+                    //         onSubmit: (e: SubmitEvent) => {
+                    //             console.log('Отправить Фото или Видео')
+                    //         }
+                    //     })
+                    // })
+                    console.log('Фото или Видео')
+                }
+            }
+        }),
+        new TooltipAction({
+          icon: locationAttachIconSvg,
+          iconClassName: ' ib-22px primary-color',
+          text: 'Локация',
+          events: {
+              click: () => {
+                  // this._modal.setProps({
+                  //     title: 'Отправить Фото или Видео',
+                  //     state: 'show',
+                  //     body: new Browse({
+                  //         onSubmit: (e: SubmitEvent) => {
+                  //             console.log('Отправить Фото или Видео')
+                  //         }
+                  //     })
+                  // })
+                  console.log('Фото или Видео')
+              }
+          }
+      })
+      ]
+  });
+
+  const buttonAttachment = new Button({
+    className: "chat-room-header__name__context-attachment-button",
+    events: {
+      click: (event: Event) => {
+        event.preventDefault();
+        console.log("buttonAttachment");
+        const { state } = mediaAction.getProps();
+        console.log('state', state)
+        mediaAction.setProps({
+                state: {
+                  show: state.show ? false : true
+                }
+                // state: state === 'display-block' ? 'display-none' : 'display-block'
+            })
+      },
+    },
+    icon: addIconSvg,
+    typeButton: ButtonType.ICON,
+  });
 
     const messageEnterField = new FormInput({
-      placeholder: "Старый пароль",
+      placeholder: "Введите сообщение",
       inputName: "message",
       type: "text",
       typeField: InputTypeField.MESSAGE_ENTER,
@@ -57,6 +139,7 @@ export class ChatRoomMessagePanel extends Block {
     });
 
     child.ButtonAttachment = buttonAttachment;
+    child.TooltipAttachmentContext = mediaAction;
     child.InputMessageField = messageEnterField;
     child.ButtonMessageSend = buttonMessageSend;
 

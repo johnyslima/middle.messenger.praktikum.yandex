@@ -13,26 +13,33 @@ import {
 } from "../../validators";
 import { ProfileBody } from "../../blocks";
 import { ChildType, Pages, PageType } from "../../typings";
-import { renderDom } from "../../utils/Routers";
+// import { renderDom } from "../../utils/Routers";
+import router from "../../routing/router";
+import LoginController from "../../controllers/LoginController";
+import { withStore } from "../../utils/Store";
 
-export class Profile extends Block {
+class ProfilePageBase extends Block {
   constructor(props?: PageType) {
     super(props);
   }
 
   init() {
+    // LoginController.fetchUser();
     let child: ChildType = this.children;
-    const isPageProfile: boolean = this.props.currentPage === Pages.PROFILE;
+    // console.log(this.props);
+        // console.log(this.props.data.login);
+    const isPageProfile: boolean = window.location.pathname === Pages.PROFILE;
     const isPageProfileEdit: boolean =
-      this.props.currentPage === Pages.PROFILE_EDIT;
+      window.location.pathname === Pages.PROFILE_EDIT;
     const isPageProfilePasswordEdit: boolean =
-      this.props.currentPage === Pages.PROFILE_CHANGE_PASSWORD;
+      window.location.pathname === Pages.PROFILE_CHANGE_PASSWORD;
     const buttonBack = new Button({
       className: "profile-page__button-back",
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.CHAT)
+          router.go(Pages.CHAT)
+          // renderDom(Pages.CHAT)
         },
       },
       icon: arrowLeftIconSvg,
@@ -108,7 +115,7 @@ export class Profile extends Block {
             });
           }
 
-          renderDom(Pages.PROFILE)
+          router.go(Pages.PROFILE)
         },
       },
       typeButton: ButtonType.PRIMARY,
@@ -120,7 +127,7 @@ export class Profile extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.PROFILE_EDIT)
+          router.go(Pages.PROFILE_EDIT)
         },
       },
       typeButton: ButtonType.LINK,
@@ -132,7 +139,7 @@ export class Profile extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.PROFILE_CHANGE_PASSWORD)
+          router.go(Pages.PROFILE_CHANGE_PASSWORD)
         },
       },
       typeButton: ButtonType.LINK,
@@ -144,7 +151,8 @@ export class Profile extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.LOGIN)
+          LoginController.logout();
+          // router.go(Pages.LOGIN)
         },
       },
       typeButton: ButtonType.LINK,
@@ -154,9 +162,7 @@ export class Profile extends Block {
       nameUser: "Иван",
     });
 
-    const formContent = new ProfileBody({
-      currentPage: this.props.currentPage,
-    });
+    const formContent = new ProfileBody({data: this.props});
 
     const form = new Form({
       template: templateProfile,
@@ -183,6 +189,12 @@ export class Profile extends Block {
   }
 
   render() {
-    return this.compile(templateProfile, { ...this.props });
+    return this.compile(templateProfile, { ...this.props});
   }
 }
+
+const withProfile = withStore((store) => ({ 
+  ...store.user.data
+}))
+
+export default withProfile(ProfilePageBase as typeof Block);

@@ -1,0 +1,13 @@
+<div class="tooltip-wrap">
+  {{#if state.show}}
+  <div class="tooltip {{ className }}">
+    {{#if actions}}
+    <ul>
+      {{#each actions}}
+      {{{this}}}
+      {{/each}}
+    </ul>
+    {{/if}}
+  </div>
+  {{/if}}
+</div>
