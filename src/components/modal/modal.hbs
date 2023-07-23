@@ -1,0 +1,22 @@
+<div>
+  {{#if state.show}}
+  <div class="modal-wrap">
+    <div class="modal-wrap-background">
+      <div class="modal {{ className }}">
+        <div class="modal_content">
+          <div class="modal_content_title">
+            {{ title }}
+          </div>
+
+          <div class="modal_content_body">
+            {{{ body }}}
+          </div>
+          <div class="modal_content_action">
+            {{{ action }}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+</div>

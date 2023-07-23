@@ -1,3 +1,5 @@
+import { Url } from "../typings/url";
+
 const METHODS = {
   GET: "GET",
   POST: "POST",
@@ -16,7 +18,7 @@ interface Options {
 type HTTPMethod = (url: string, data?: Options) => Promise<unknown>;
 
 export default class HTTPTransport {
-  static BASE_URL = "https://ya-praktikum.tech/api/v2";
+  static BASE_URL = Url.BASE;
   protected _baseUrl: string;
 
   constructor(url: string) {
@@ -63,11 +65,20 @@ export default class HTTPTransport {
   };
 
   public put: HTTPMethod = (url, options = {}) => {
+    console.log(this._baseUrl, url, options);
     return this.request(
-      url,
-      { ...options, method: METHODS.PUT },
+      this._baseUrl + url,
+      {
+        method: METHODS.PUT,
+        data: options,
+      },
       options.timeout
     );
+    // return this.request(
+    //   url,
+    //   { ...options, method: METHODS.PUT },
+    //   options.timeout
+    // );
   };
 
   public delete: HTTPMethod = (url, options = {}) => {

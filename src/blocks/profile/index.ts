@@ -13,7 +13,7 @@ import {
 import { Pages } from "../../typings/pagesType";
 import { withStore, Store } from "../../utils/Store";
 
-export default class ProfileBodyBase extends Block {
+export default class ProfileBody extends Block {
   // constructor(props: unknown) {
   //   console.log('props', props)
   //   super(props);
@@ -43,7 +43,7 @@ export default class ProfileBodyBase extends Block {
   }
 
   init() {
-    console.log(this.props.data.login);
+    const { login, first_name, second_name, avatar, display_name, id, phone, email } = this.props.data 
     let child: ChildType = this.children;
     const emailField: FormInput = new FormInput({
       placeholder: "Почта",
@@ -51,7 +51,7 @@ export default class ProfileBodyBase extends Block {
       type: "email",
       typeField: InputTypeField.PROFILE,
       editable: this.isEditable(),
-      value: "pochta@yandex.ru",
+      value: email,
       events: {
         focusout: () => {
           emailField.isValid(EmailValidator);
@@ -64,7 +64,7 @@ export default class ProfileBodyBase extends Block {
       type: "text",
       typeField: InputTypeField.PROFILE,
       editable: this.isEditable(),
-      value:this.props.data.login,
+      value: login,
       // value: "ivanivanov",
       events: {
         focusout: () => {
@@ -78,7 +78,7 @@ export default class ProfileBodyBase extends Block {
       type: "text",
       typeField: InputTypeField.PROFILE,
       editable: this.isEditable(),
-      value: "Иван",
+      value: first_name,
       events: {
         focusout: () => {
           firstNameField.isValid(NameValidator);
@@ -91,7 +91,7 @@ export default class ProfileBodyBase extends Block {
       type: "text",
       typeField: InputTypeField.PROFILE,
       editable: this.isEditable(),
-      value: "Иванов",
+      value: second_name,
       events: {
         focusout: () => {
           secondNameField.isValid(NameValidator);
@@ -104,7 +104,7 @@ export default class ProfileBodyBase extends Block {
       type: "text",
       typeField: InputTypeField.PROFILE,
       editable: this.isEditable(),
-      value: "Иван",
+      value: display_name || first_name,
       events: {
         focusout: () => {
           displayNameField.isValid(NameValidator);
@@ -117,7 +117,7 @@ export default class ProfileBodyBase extends Block {
       type: "tel",
       typeField: InputTypeField.PROFILE,
       editable: this.isEditable(),
-      value: "+7-909-967-30-30",
+      value: phone,
       events: {
         focusout: () => {
           phoneField.isValid(PhoneValidator);

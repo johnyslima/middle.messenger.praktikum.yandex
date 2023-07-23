@@ -1,4 +1,5 @@
 import { Avatar } from "./avatar";
+import { Modal } from "./modal";
 import { Button, ButtonType } from "./button";
 import { ChatList } from "./chatList";
 import { ChatListItem } from "./chatListItem";
@@ -11,6 +12,7 @@ import { MessageCloud } from "./message";
 
 export {
   Avatar,
+  Modal,
   Button,
   ButtonType,
   ChatList,

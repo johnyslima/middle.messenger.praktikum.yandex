@@ -1,7 +1,9 @@
 import Api from './common';
-import LoginAPI from './loginApi';
+import AuthApi from './loginApi';
+import ProfileApi from './profileApi';
 
 export default {
   Api,
-  LoginAPI
+  AuthApi,
+  ProfileApi
 }

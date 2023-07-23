@@ -61,7 +61,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
     removeBodyLoader();
   } catch (e) {
-    console.log('e', e)
+    // console.log('e', e)
     Router.start();
     if (isProtectedRoute) {
       Router.go("/login");

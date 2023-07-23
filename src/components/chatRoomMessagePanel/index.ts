@@ -25,8 +25,6 @@ export class ChatRoomMessagePanel extends Block {
 
   init() {
     let child: ChildType = this.children;
-    
-    
 
     const mediaAction = new Tooltip({
       state: {

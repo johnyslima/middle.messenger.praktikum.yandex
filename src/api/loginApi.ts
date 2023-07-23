@@ -26,7 +26,7 @@ export interface User {
   avatar: string;
 }
 
-export class AuthApi extends BaseApi {
+export default class AuthApi extends BaseApi {
   constructor() {
     super('/auth');
   }
