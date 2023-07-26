@@ -74,67 +74,20 @@ export default class HTTPTransport {
       },
       options.timeout
     );
-    // return this.request(
-    //   url,
-    //   { ...options, method: METHODS.PUT },
-    //   options.timeout
-    // );
   };
 
   public delete: HTTPMethod = (url, options = {}) => {
+    console.log(this._baseUrl, url, options);
     return this.request(
-      url,
-      { ...options, method: METHODS.DELETE },
+      this._baseUrl + url,
+      {
+        method: METHODS.DELETE,
+        data: options,
+      },
       options.timeout
     );
   };
 
-  // private request = (url: string, options: Options = {}, timeout = 5000) => {
-  //   const { headers = {}, method, data } = options;
-  //   console.log(options);
-  //   return new Promise((resolve, reject) => {
-  //     if (!method) {
-  //       reject("No method");
-  //       return;
-  //     }
-
-  //     const xhr = new XMLHttpRequest();
-  //     const isGet = method === METHODS.GET;
-
-  //     xhr.open(method, url);
-  //     console.log(xhr, url);
-
-  //     Object.keys(headers).forEach((key) => {
-  //       xhr.setRequestHeader(key, headers[key]);
-  //     });
-
-  //     xhr.onload = function () {
-  //       resolve(xhr);
-  //     };
-
-  //     xhr.onabort = reject;
-  //     xhr.onerror = reject;
-
-  //     xhr.timeout = timeout;
-  //     xhr.ontimeout = reject;
-  //     xhr.withCredentials = true;
-  //     xhr.responseType = "json";
-
-  //     // const qwe = {login:"Berdyeman84", password: "Asdqwsaaze22"}
-
-  //     if (data instanceof FormData === false) {
-  //       xhr.setRequestHeader("Content-Type", "application/json");
-  //     }
-
-  //     if (isGet || !data) {
-  //       xhr.send();
-  //     } else {
-  //       xhr.send(
-  //         data instanceof FormData === false ? JSON.stringify(data) : data
-  //       );
-  //     }
-  //   });
-  // };
   private request<Response>(url: string, options: Options = {method: METHODS.GET}, timeout = 5000): Promise<Response> {
     const {method, data, headers} = options;
 

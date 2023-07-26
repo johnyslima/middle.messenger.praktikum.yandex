@@ -7,7 +7,7 @@ interface TooltipActionProps {
     iconClassName?: string;
     text?: string;
     events?: {
-        click: () => void;
+        click: (event: Event) => void;
     };
 }
 

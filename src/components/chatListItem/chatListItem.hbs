@@ -5,7 +5,7 @@
   <div class="chatList-item-info">
     <div class="chatList-item-info__row">
       <div class="chatList-item-info__name">
-        {{{roomName}}}
+        {{{title}}}
       </div>
       <div class="chatList-item-info__time">
         {{ time }}
@@ -13,12 +13,12 @@
     </div>
     <div class="chatList-item-info__row">
       <div class="chatList-item-info__last-message">
-        {{ lastMessage }}
+        {{ last_message }}
       </div>
       {{#if countUnread}}
       <div class="chatList-item-info__count-unread">
         <span>
-          {{ countUnread }}
+          {{ unread_count }}
         </span>
       </div>
       {{/if}}

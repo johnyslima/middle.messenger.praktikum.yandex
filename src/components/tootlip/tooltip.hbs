@@ -1,5 +1,4 @@
-<div class="tooltip-wrap">
-  {{#if state.show}}
+<div class="tooltip-wrap {{visible}}">
   <div class="tooltip {{ className }}">
     {{#if actions}}
     <ul>
@@ -9,5 +8,4 @@
     </ul>
     {{/if}}
   </div>
-  {{/if}}
 </div>

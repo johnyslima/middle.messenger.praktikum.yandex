@@ -36,10 +36,8 @@ class ProfilePageBase extends Block {
       window.location.pathname === Pages.PROFILE_CHANGE_PASSWORD;
 
     const formContent = new ProfileBody({data: this.props});
-    const formAvatar = new ChangeAvatarBody({data: this.props});
   
     const form = new Form({
-      template: templateProfile,
       className: "profile-page__form-info",
       events: {
         submit: (event: Event) => {
@@ -48,34 +46,6 @@ class ProfilePageBase extends Block {
       },
       formBody: formContent,
      });
-
-    const formModal = new Form({
-      template: templateProfile,
-      className: "modal__form-change-avatar",
-      events: {
-        submit: (event: Event) => {
-          event.preventDefault();
-        },
-      },
-      formBody: formAvatar,
-      formFooterButton: new Button({
-          label: "Поменять",
-          className: "button button--primary",
-          events: {
-            click: (event: Event) => {
-              event.preventDefault();
-              // router.go(Pages.PROFILE)
-              const fileField = formAvatar.children.FileInput as FormInput;
-              const fileAvatar = fileField.getFile();
-              console.log('fileField', fileAvatar)
-              const formData = new FormData();
-              formData.append("avatar", fileAvatar)
-              ProfileController.changeAvatar(formData)
-            },
-          },
-          typeButton: ButtonType.PRIMARY,
-        })
-    })
 
     const buttonBack = new Button({
       className: "profile-page__button-back",
@@ -216,27 +186,42 @@ class ProfilePageBase extends Block {
     });
 
     const modalAction = new Modal({
-      state: {
-        show: false
-      },
-      className: "avatar-modal",
       title: "Загрузите файл",
-      body: formModal,
+      visible: "hide",
+      body: new Form({
+        className: "modal__form-change-avatar",
+        events: {
+          submit: (event: Event) => {
+            event.preventDefault();
+          },
+        },
+        formBody: new ChangeAvatarBody({data: this.props}),
+        formFooterButton: new Button({
+            label: "Поменять",
+            className: "button button--primary",
+            events: {
+              click: (event: Event) => {
+                event.preventDefault();
+                const fileField = modalAction.children.body.children.formBody.children.FileInput as FormInput;
+                const fileAvatar = fileField.getFile();
+                const formData = new FormData();
+                formData.append("avatar", fileAvatar)
+                ProfileController.changeAvatar(formData)
+              },
+            },
+            typeButton: ButtonType.PRIMARY,
+          })
+      }),
       events: {
         click: (event: Event) => {
           event.stopPropagation();
-          const { state } = modalAction.getProps();
           const target = event.target as HTMLElement;
           if(target.matches('.modal-wrap-background')) {
-            modalAction.setProps({
-              state: {
-                show: state.show ? false : true
-              }
-            })
+            modalAction.closeModal()
           }
         },
       },
-  });
+    });
 
     const avatar = new Avatar({
       nameUser: this.props.display_name || this.props.first_name,
@@ -247,12 +232,7 @@ class ProfilePageBase extends Block {
         events: {
           click: (event: Event) => {
             event.preventDefault();
-            const { state } = modalAction.getProps();
-            modalAction.setProps({
-                    state: {
-                      show: state.show ? false : true
-                    }
-                })
+            modalAction.openModal()
           },
         },
         label: "Поменять аватар",
@@ -280,8 +260,8 @@ class ProfilePageBase extends Block {
   }
 }
 
-const withProfile = withStore((store) => ({ 
+const withStateToProps = withStore((store) => ({ 
   ...store.user.data
 }))
 
-export default withProfile(ProfilePageBase as typeof Block);
+export default withStateToProps(ProfilePageBase as typeof Block);

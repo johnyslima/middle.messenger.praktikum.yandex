@@ -15,6 +15,7 @@ export class ChangeAvatarBody extends Block {
       inputName: "file",
       type: "text",
       typeField: "file",
+      accept: "image/png, image/gif, image/jpeg",
     });
 
 

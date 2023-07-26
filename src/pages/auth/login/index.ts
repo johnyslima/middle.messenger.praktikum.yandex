@@ -3,7 +3,6 @@ import { Button, ButtonType, Form, FormInput } from "../../../components";
 import { LoginBody } from "../../../blocks";
 import template from "./login.hbs";
 import { LoginValidator, PasswordValidator } from "../../../validators";
-// import { renderDom } from "../../../utils/Routers";
 import { withStore } from '../../../utils/Store'; 
 import LoginController from "../../../controllers/LoginController";
 import { Pages, PageType } from "../../../typings";
@@ -22,8 +21,7 @@ export class Login extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          router.go("/signUp");
-          // renderDom(Pages.SIGN_UP)
+          router.go(Pages.SIGN_UP);
         }
       },
       typeButton: ButtonType.LINK
@@ -39,10 +37,6 @@ export class Login extends Block {
           const passwordField = formContent.children.PasswordInput as FormInput;
 
           if(loginField.isValid(LoginValidator) && passwordField.isValid(PasswordValidator)) {
-            console.log({
-              login: loginField.getValue(),
-              password: passwordField.getValue(),
-            });
             // store.setState({
             //   loginPage: {
             //     isLoading: true,
@@ -79,6 +73,6 @@ export class Login extends Block {
   }
 }
 
-const withUser = withStore((state) => ({ ...state.user }))
+const withStateToProps = withStore((state) => ({ ...state.user }))
 
-export default withUser(Login as typeof Block);
+export default withStateToProps(Login as typeof Block);

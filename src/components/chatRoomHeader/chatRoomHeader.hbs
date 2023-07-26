@@ -1,5 +1,8 @@
 <div class="chat-room-header">
-  <div class="chat-room-header__avatar"><img src="{{{avatar}}}" width="34" alt="avatar room or user" /></div>
+  {{#if selectedChat}}
+  <div class="chat-room-header__avatar">
+    <img src="{{{avatar}}}" width="34" alt="avatar room or user" />
+  </div>
   <div class="chat-room-header__name">{{{roomName}}}
     <div>
       {{{ButtonContextMenu}}}
@@ -7,4 +10,6 @@
 
     </div>
   </div>
+  {{{ ModalContext }}}
+  {{/if}}
 </div>

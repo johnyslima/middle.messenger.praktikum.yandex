@@ -8,8 +8,6 @@ export default class ProfileApi extends BaseApi
     }
 
     update(data: ProfileData) {
-      console.log('profileApi', this)
-      console.log('profileApi', this.http)
       return this.http.put('/profile', data);
     }
   
@@ -24,22 +22,6 @@ export default class ProfileApi extends BaseApi
     searchUsers(login: string) {
       return this.http.post('/search', { login });
     }
-
-    // public update(data: ProfileData): Promise<ProfileDataAvatar> {
-    //     return this.http.put('/profile', data);
-    // }
-
-    // public changeAvatar(data: FormData): Promise<ProfileDataAvatar> {
-    //     return this.http.put('/profile/avatar', data);
-    // }
-
-    // public changePassword(data: ProfileChangePassword): Promise<any> {
-    //     return this.http.put('/password', data);
-    // }
-
-    // public searchUsers(login: string): Promise<IUserData[]> {
-    //     return this.http.post('/search', {login});
-    // }
 
     read = undefined; 
     create = undefined; 

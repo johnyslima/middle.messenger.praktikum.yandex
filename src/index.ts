@@ -1,7 +1,5 @@
 import "./style/index.pcss";
 import "./components";
-
-// import { renderDom } from './utils/Routers'
 import Router from "./routing/router";
 import {
   Login,
@@ -31,8 +29,8 @@ window.addEventListener("DOMContentLoaded", async () => {
   
   addBodyLoader();
   Router
-  .use("/", Main)
-  .use("/login", Login)
+  // .use("/", Main)
+  .use("/", Login)
   .use("/signUp", SignUp)
   .use("/profile", ProfilePage)
   .use("/profileEdit", ProfilePage)
@@ -40,7 +38,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   .use("/chat", Chat)
   .use("/404", Error404)
   .use("/500", Error500)
-  // .start();
 
   
   let isProtectedRoute = true;
@@ -54,18 +51,18 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   try {
     await LoginController.fetchUser();
+
     Router.start();
+
     if (!isProtectedRoute) {
-    // Router.go(window.location.pathname)
-      Router.go("/profile")
+      Router.go(Pages.CHAT)
     }
     removeBodyLoader();
   } catch (e) {
-    // console.log('e', e)
     Router.start();
+
     if (isProtectedRoute) {
-      Router.go("/login");
-      // Router.go(Routes.SignIn);
+      Router.go(Pages.LOGIN);
     }
     removeBodyLoader();
   }

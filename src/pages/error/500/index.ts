@@ -1,7 +1,7 @@
 import { Button, ButtonType } from "../../../components";
+import router from "../../../routing/router";
 import { Pages, PageType } from "../../../typings";
 import Block from "../../../utils/Block";
-import { renderDom } from "../../../utils/Routers";
 import template from "./errorPage.hbs";
 
 export class Error500 extends Block {
@@ -16,7 +16,7 @@ export class Error500 extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.CHAT)
+          router.go(Pages.CHAT)
         }
       },
       typeButton: ButtonType.LINK

@@ -1,12 +1,19 @@
 <div class="chat">
   <div class="chat-left-field">
-    {{{ButtonToProfile}}}
+    <div class="chat-left-field-actions">
+      {{{ButtonCreateChat}}}
+      {{{ButtonToProfile}}}
+    </div>
     {{{SearchField}}}
     {{{ChatListComponent}}}
   </div>
   <div class="chat-right-field">
+    {{#if selectedChat}}
     {{{ChatRoomHeader}}}
     {{{ChatRoomContent}}}
     {{{ChatRoomMessagePanel}}}
+    {{/if}}
+
   </div>
+  {{{ModalContext}}}
 </div>

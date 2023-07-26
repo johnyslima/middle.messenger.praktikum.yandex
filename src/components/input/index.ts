@@ -12,11 +12,13 @@ export enum InputTypeField {
   PROFILE = "profile",
   SEARCH = "search",
   MESSAGE_ENTER = "message_enter",
-  FILE_INPUT = "file"
+  FILE_INPUT = "file",
+  TEXT = "text"
 }
 
 interface FormInputProps {
   placeholder?: string;
+  accept?: string;
   events?: {
     blur?: (event: Event) => void;
     focus?: (event: Event) => void;
@@ -40,6 +42,7 @@ export class FormInput extends Block {
   private getTemplate() {
     switch (this.props.typeField) {
       case InputTypeField.LOGIN:
+      case InputTypeField.TEXT:
         return templateInput;
         break;
       case InputTypeField.PROFILE:

@@ -16,6 +16,7 @@ export class Store extends EventBus {
   }
 
   public getState() {
+    // console.log('this', this.state.chats)
     return this.state;
   }
 }
@@ -37,19 +38,17 @@ const store = new Store();
 
 export function withStore(mapStateToProps: (state: any) => any) {
   return function wrap(Component: typeof Block){
-
     return class WithStore extends Component {
-
+      
       constructor(props: any) {
         let previousState = mapStateToProps(store.getState());
-
+        
         super({ ...(props), ...previousState });
-
+        
         store.on(StoreEvents.Updated, () => {
           const stateProps = mapStateToProps(store.getState());
-
+          
           previousState = stateProps;
-
           this.setProps({ ...stateProps });
         });
 
