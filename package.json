@@ -12,9 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
-    "@parcel/transformer-yaml": "2.8.3",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "autoprefixer": "10.4.13",
     "eslint": "^8.35.0",
@@ -23,7 +21,6 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
-    
     "parcel": "2.8.3",
     "postcss": "8.4.21",
     "handlebars": "4.7.7",
