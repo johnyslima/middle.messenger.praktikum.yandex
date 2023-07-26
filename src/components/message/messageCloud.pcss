@@ -4,12 +4,17 @@
   .message {
     border-radius: 12px;
     max-width: 400px;
+    min-width: 60px;
     color: var(--textColorRegular);
-    padding: 11px;
+    padding: 11px 15px 11px 10px;
     font-size: 12px;
     line-height: 15px;
     margin-bottom: 10px;
     position: relative;
+
+    img {
+      max-width: 400px;
+    }
 
     &.message-from {
       background-color: var(--primaryColor);
@@ -19,6 +24,12 @@
     &.message-to {
       background-color: var(--borderColor);
       border-bottom-right-radius: 0px;
+    }
+
+    &__time {
+      text-align: end;
+      font-size: 8px;
+      color: var(--grayColor);
     }
   }
 

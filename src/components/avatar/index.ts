@@ -1,6 +1,9 @@
 import Block from "../../utils/Block";
 import template from "./avatar.hbs";
+import { Modal } from "../modal";
 import emptyPictIconSvg from "../../assets/icons/empty_pict.svg";
+import { Button, ButtonType } from "../button";
+import addIconSvg from "../../assets/icons/add_icon.svg";
 
 interface AvatarProps {
   nameUser: string;
@@ -9,6 +12,8 @@ interface AvatarProps {
   };
   className?: string;
   img?: SVGElement | string;
+  changeAvatarBtn?: Block;
+  isEdit?: boolean;
 }
 
 export class Avatar extends Block {
@@ -19,6 +24,7 @@ export class Avatar extends Block {
   render() {
     return this.compile(template, {
       ...this.props,
+      // img: emptyPictIconSvg,
       img: this.props.img || emptyPictIconSvg,
     });
   }

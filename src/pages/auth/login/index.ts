@@ -3,8 +3,11 @@ import { Button, ButtonType, Form, FormInput } from "../../../components";
 import { LoginBody } from "../../../blocks";
 import template from "./login.hbs";
 import { LoginValidator, PasswordValidator } from "../../../validators";
-import { renderDom } from "../../../utils/Routers";
+import { withStore } from '../../../utils/Store'; 
+import LoginController from "../../../controllers/LoginController";
 import { Pages, PageType } from "../../../typings";
+import router from "../../../routing/router";
+import { REGISTRATION_PAGE } from "../../../routing/routes";
 
 export class Login extends Block {
   constructor(props?: PageType) {
@@ -19,7 +22,7 @@ export class Login extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.SIGN_UP)
+          router.go(REGISTRATION_PAGE);
         }
       },
       typeButton: ButtonType.LINK
@@ -35,11 +38,10 @@ export class Login extends Block {
           const passwordField = formContent.children.PasswordInput as FormInput;
 
           if(loginField.isValid(LoginValidator) && passwordField.isValid(PasswordValidator)) {
-            console.log({
+            LoginController.signin({
               login: loginField.getValue(),
               password: passwordField.getValue(),
-            });
-            setTimeout(() => renderDom(Pages.CHAT), 1000)
+            }); 
           } else {
             console.error('Некоторые поля не проходят валидацию')
           }
@@ -65,3 +67,7 @@ export class Login extends Block {
     return this.compile(template, { ...this.props });
   }
 }
+
+const withStateToProps = withStore((state) => ({ ...state.user }))
+
+export default withStateToProps(Login as typeof Block);

@@ -5,16 +5,20 @@ import templateInputProfile from "./inputProfile.hbs";
 import templateInputProfileEditable from "./inputProfileEditable.hbs";
 import templateInputSearch from "./inputSearch.hbs";
 import templateInputMessageEnter from "./inputMessageEnter.hbs";
+import templateInputFile from "./inputFile.hbs";
 
 export enum InputTypeField {
   LOGIN = "login",
   PROFILE = "profile",
   SEARCH = "search",
   MESSAGE_ENTER = "message_enter",
+  FILE_INPUT = "file",
+  TEXT = "text"
 }
 
 interface FormInputProps {
-  placeholder: string;
+  placeholder?: string;
+  accept?: string;
   events?: {
     blur?: (event: Event) => void;
     focus?: (event: Event) => void;
@@ -38,6 +42,7 @@ export class FormInput extends Block {
   private getTemplate() {
     switch (this.props.typeField) {
       case InputTypeField.LOGIN:
+      case InputTypeField.TEXT:
         return templateInput;
         break;
       case InputTypeField.PROFILE:
@@ -51,6 +56,9 @@ export class FormInput extends Block {
       case InputTypeField.MESSAGE_ENTER:
         return templateInputMessageEnter;
         break;
+      case InputTypeField.FILE_INPUT:
+        return templateInputFile;
+        break;
       default:
         return templateInput;
         break;
@@ -59,6 +67,10 @@ export class FormInput extends Block {
 
   getValue() {
     return (this.element?.children[0] as HTMLInputElement).value;
+  }
+
+  getFile() {
+    return (this.element?.children[0].files[0] as string | Blob);
   }
 
   isValid(validator: ValidatorsType) {

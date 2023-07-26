@@ -1,7 +1,8 @@
 import { Button, ButtonType } from "../../../components";
+import router from "../../../routing/router";
+import { CHAT_PAGE } from "../../../routing/routes";
 import { Pages, PageType } from "../../../typings";
 import Block from "../../../utils/Block";
-import { renderDom } from "../../../utils/Routers";
 import template from "./errorPage.hbs";
 
 export class Error404 extends Block {
@@ -16,7 +17,7 @@ export class Error404 extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.CHAT)
+          router.go(CHAT_PAGE)
         }
       },
       typeButton: ButtonType.LINK

@@ -2,7 +2,7 @@ import Block from "../../utils/Block";
 import template from "./main.hbs";
 import { Button, ButtonType } from "../../components";
 import { ChildType, Pages, PageType } from "../../typings";
-import { renderDom } from "../../utils/Routers";
+import router from "../../routing/router";
 
 
 export class Main extends Block {
@@ -19,7 +19,7 @@ export class Main extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.LOGIN)
+          router.go('/login');
         },
       },
       typeButton: ButtonType.LINK,
@@ -31,7 +31,7 @@ export class Main extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.SIGN_UP)
+          router.go('/signUp');
         },
       },
       typeButton: ButtonType.LINK,
@@ -43,7 +43,7 @@ export class Main extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.CHAT)
+          router.go('/chat');
         },
       },
       typeButton: ButtonType.LINK,
@@ -55,7 +55,7 @@ export class Main extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.PROFILE)
+          router.go('/profile');
         },
       },
       typeButton: ButtonType.LINK,
@@ -67,7 +67,7 @@ export class Main extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.ERROR_404)
+          router.go('/404');
         },
       },
       typeButton: ButtonType.LINK,
@@ -79,7 +79,7 @@ export class Main extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.ERROR_500)
+          router.go('/500');
         },
       },
       typeButton: ButtonType.LINK,
