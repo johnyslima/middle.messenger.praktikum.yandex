@@ -53,7 +53,6 @@ export default class HTTPTransport {
   };
 
   public post: HTTPMethod = (url, options = {}) => {
-    console.log(this._baseUrl, url, options);
     return this.request(
       this._baseUrl + url,
       {
@@ -65,7 +64,6 @@ export default class HTTPTransport {
   };
 
   public put: HTTPMethod = (url, options = {}) => {
-    console.log(this._baseUrl, url, options);
     return this.request(
       this._baseUrl + url,
       {
@@ -77,7 +75,6 @@ export default class HTTPTransport {
   };
 
   public delete: HTTPMethod = (url, options = {}) => {
-    console.log(this._baseUrl, url, options);
     return this.request(
       this._baseUrl + url,
       {

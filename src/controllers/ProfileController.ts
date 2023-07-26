@@ -37,11 +37,7 @@ export class ProfileController {
 
   async changeAvatar(data: FormData) { 
     try {
-      for (var pair of data.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]); 
-    }
       const user = await this.api.changeAvatar(data);
-      console.log(user)
       store.set('user.data', user);
       router.go(PROFILE_PAGE);
     } catch (error: any) {

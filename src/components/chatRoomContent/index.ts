@@ -19,8 +19,6 @@ class ChatRoomContent extends Block {
   init() {
     let child: ChildType = this.children;
     const messages = this.props.messages || []
-
-    console.log('messages', messages)
     child.MessagesArr = messages?.map(
       (message: MessageType) => {
         contentType(message?.file)

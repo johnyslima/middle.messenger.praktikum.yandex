@@ -175,7 +175,6 @@ const withStateToProps = withStore((state) => {
   const currentChat: any = state.chats.filter(
     (item: any) => item.id === selectedChatId
     )[0];
-    console.log('currentChat', currentChat)
 
   return {
     selectedChat: state.selectedChat,

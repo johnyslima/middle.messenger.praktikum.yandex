@@ -50,12 +50,10 @@ class ChatRoomMessagePanel extends Block {
                       click: async (event: Event) => {
                         event.preventDefault();
                         const fileField = modalAction.children.body.children.formBody as FormInput;
-                        console.log('fileField', fileField.getFile())
                         const fileAvatar = fileField.getFile();
                         const formData = new FormData();
                         formData.append("resource", fileAvatar);
                         const file: IResource = await MessagesController.sendFile(formData);
-                        console.log('MessagesController', MessagesController)
                         MessagesController.sendMessage(this.props.selectedChat, (file.id).toString(), 'file');
                         modalAction.closeModal();
                       },
@@ -64,7 +62,6 @@ class ChatRoomMessagePanel extends Block {
                   }),
                 }),
               });
-              console.log("Фото или Видео");
               modalAction.openModal();
             },
           },
@@ -104,7 +101,6 @@ class ChatRoomMessagePanel extends Block {
                   }),
                 }),
               });
-              console.log("Файл");
               modalAction.openModal();
             },
           },
@@ -177,9 +173,7 @@ class ChatRoomMessagePanel extends Block {
           }
 
           const message = messageEnterField.getValue();
-          console.log("messageEnterField", messageEnterField, message);
           MessagesController.sendMessage(this.props.selectedChat, message);
-          console.log(messageEnterField.getValue());
         },
       },
       icon: arrowRightIconSvg,

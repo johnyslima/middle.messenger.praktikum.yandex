@@ -255,10 +255,9 @@ class ProfilePageBase extends Block {
   }
 }
 
-const withStateToProps = withStore((store) => {
-  console.log('store', store)
+const withStateToProps = withStore((state) => {
   return({ 
-  ...store.user.data
+  ...state.user.data
 })})
 
 export default withStateToProps(ProfilePageBase as typeof Block);

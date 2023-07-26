@@ -94,7 +94,6 @@ export class ChatsController {
 
   async deleteChat(chatId: number): Promise<IResult> {
     try {
-      console.log('chatId', chatId, this.api)
       await this.api.delete(chatId);
       this.fetchChats();
       return {

@@ -20,8 +20,6 @@ export default class ChatsApi extends BaseApi
     }
 
     public addUserToChat(userId: number, chatId: number) {
-      console.log('userId', userId)
-      console.log('chatId', chatId)
         return this.http.put('/users', {
             users: [
                 userId
