@@ -16,6 +16,7 @@ import router from "../../routing/router";
 import ChatsController from "../../controllers/ChatsController";
 import { withStore } from "../../utils/Store";
 import { EmptyRoom } from "../../components/emptyRoom";
+import { PROFILE_PAGE } from "../../routing/routes";
 
 class Chat extends Block {
   constructor(props?: PageType) {
@@ -34,8 +35,6 @@ class Chat extends Block {
         click: (event: Event) => {
           event.preventDefault();
             modalAction.openModal()
-          // router.go('/profile');
-          // renderDom(Pages.PROFILE)
         },
       },
       typeButton: ButtonType.LINK,
@@ -48,7 +47,7 @@ class Chat extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          router.go('/profile');
+          router.go(PROFILE_PAGE);
         },
       },
       typeButton: ButtonType.LINK,

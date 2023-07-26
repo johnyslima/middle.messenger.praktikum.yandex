@@ -1,7 +1,6 @@
 import { set } from './Helpers';
 import { EventBus } from './EventBus';
 import Block from './Block';
-// import { ChatData } from '../Api/ChatsApi';
 
 export enum StoreEvents {
   Updated = 'updated'
@@ -16,7 +15,6 @@ export class Store extends EventBus {
   }
 
   public getState() {
-    // console.log('this', this.state.chats)
     return this.state;
   }
 }
@@ -31,7 +29,6 @@ interface IStore {
   user?: TData,
   chats?: TData,
   selectedChat?: any,
-  // selectedChat?: ChatData,
 }
 
 const store = new Store();

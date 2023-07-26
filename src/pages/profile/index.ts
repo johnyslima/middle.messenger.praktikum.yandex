@@ -12,13 +12,13 @@ import {
   RepeatPasswordValidator,
 } from "../../validators";
 import { ProfileBody, ChangeAvatarBody } from "../../blocks";
-import { ChildType, Pages, PageType } from "../../typings";
-// import { renderDom } from "../../utils/Routers";
+import { ChildType, PageType } from "../../typings";
 import router from "../../routing/router";
 import LoginController from "../../controllers/LoginController";
 import { withStore } from "../../utils/Store";
 import ProfileController from "../../controllers/ProfileController";
 import { Url } from "../../typings/url";
+import { CHAT_PAGE, PROFILE_CHANGE_PASSWORD_PAGE, PROFILE_EDIT_PAGE, PROFILE_PAGE } from "../../routing/routes";
 
 class ProfilePageBase extends Block {
   constructor(props?: PageType) {
@@ -27,13 +27,12 @@ class ProfilePageBase extends Block {
 
   init() {
     // LoginController.fetchUser();
-    console.log('this.props', this.props)
     let child: ChildType = this.children;
-    const isPageProfile: boolean = window.location.pathname === Pages.PROFILE;
+    const isPageProfile: boolean = window.location.pathname === PROFILE_PAGE;
     const isPageProfileEdit: boolean =
-      window.location.pathname === Pages.PROFILE_EDIT;
+      window.location.pathname === PROFILE_EDIT_PAGE;
     const isPageProfilePasswordEdit: boolean =
-      window.location.pathname === Pages.PROFILE_CHANGE_PASSWORD;
+      window.location.pathname === PROFILE_CHANGE_PASSWORD_PAGE;
 
     const formContent = new ProfileBody({data: this.props});
   
@@ -53,11 +52,10 @@ class ProfilePageBase extends Block {
         click: (event: Event) => {
           event.preventDefault();
           if(isPageProfileEdit || isPageProfilePasswordEdit) {
-            router.go(Pages.PROFILE)
+            router.go(PROFILE_PAGE)
           } else {
-            router.go(Pages.CHAT)
+            router.go(CHAT_PAGE)
           }
-          // renderDom(Pages.CHAT)
         },
       },
       icon: arrowLeftIconSvg,
@@ -141,8 +139,6 @@ class ProfilePageBase extends Block {
               newPasswordRepeat: repeatNewPasswordField.getValue(),
             });
           }
-
-          // router.go(Pages.PROFILE)
         },
       },
       typeButton: ButtonType.PRIMARY,
@@ -154,7 +150,7 @@ class ProfilePageBase extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          router.go(Pages.PROFILE_EDIT)
+          router.go(PROFILE_EDIT_PAGE)
         },
       },
       typeButton: ButtonType.LINK,
@@ -166,7 +162,7 @@ class ProfilePageBase extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          router.go(Pages.PROFILE_CHANGE_PASSWORD)
+          router.go(PROFILE_CHANGE_PASSWORD_PAGE)
         },
       },
       typeButton: ButtonType.LINK,
@@ -179,7 +175,6 @@ class ProfilePageBase extends Block {
         click: (event: Event) => {
           event.preventDefault();
           LoginController.logout();
-          // router.go(Pages.LOGIN)
         },
       },
       typeButton: ButtonType.LINK,
@@ -260,8 +255,10 @@ class ProfilePageBase extends Block {
   }
 }
 
-const withStateToProps = withStore((store) => ({ 
+const withStateToProps = withStore((store) => {
+  console.log('store', store)
+  return({ 
   ...store.user.data
-}))
+})})
 
 export default withStateToProps(ProfilePageBase as typeof Block);

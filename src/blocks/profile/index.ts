@@ -10,26 +10,15 @@ import {
   PasswordValidator,
   PhoneValidator,
 } from "../../validators";
-import { Pages } from "../../typings/pagesType";
-import { withStore, Store } from "../../utils/Store";
+import { PROFILE_CHANGE_PASSWORD_PAGE, PROFILE_PAGE } from "../../routing/routes";
 
 export default class ProfileBody extends Block {
-  // constructor(props: unknown) {
-  //   console.log('props', props)
-  //   super(props);
-  // }
-
-  // componentDidUpdate(_oldProps: any, _newProps: any): boolean {
-  //   console.log('oldsProps new props', _oldProps, _newProps)
-  //   return true;
-  // }
-
   private getTemplate() {
     switch (window.location.pathname) {
-      case Pages.PROFILE:
+      case PROFILE_PAGE:
         return template;
         break;
-      case Pages.PROFILE_CHANGE_PASSWORD:
+      case PROFILE_CHANGE_PASSWORD_PAGE:
         return templateChangePassword;
         break;
       default:
@@ -39,7 +28,7 @@ export default class ProfileBody extends Block {
   }
 
   private isEditable() {
-    return window.location.pathname === Pages.PROFILE ? false : true
+    return window.location.pathname === PROFILE_PAGE ? false : true
   }
 
   init() {
@@ -65,7 +54,6 @@ export default class ProfileBody extends Block {
       typeField: InputTypeField.PROFILE,
       editable: this.isEditable(),
       value: login,
-      // value: "ivanivanov",
       events: {
         focusout: () => {
           loginField.isValid(LoginValidator);

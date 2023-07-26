@@ -23,7 +23,6 @@ export default class WSTransport extends EventBus {
       throw new Error('Socket is not connected');
     }
 
-    // console.log('JSON.stringify(data)', JSON.stringify(data))
     this.socket.send(JSON.stringify(data))
   }
 

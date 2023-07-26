@@ -1,9 +1,7 @@
-// import API, { ChatsAPI } from '../Api/ChatsApi';
 import ChatsApi from '../api/chatApi';
 import ProfileApi from '../api/profileApi';
 import { IUserData } from '../typings';
 import store from '../utils/Store';
-// import ProfileAPI, { IUserData, ProfileAPI as BaseProfileApi } from '../Api/ProfileAPI';
 import MessagesController from './MessagesController';
 
 export interface IResult {
@@ -15,13 +13,6 @@ export class ChatsController {
 
   private readonly api: ChatsApi;
   private readonly profileApi: ProfileApi;
-  // constructor(
-  //   private readonly api: ChatsApi = API,
-  //   private readonly profileApi: BaseProfileApi = ProfileApi
-  // ) {
-  //   this.api = api;
-  //   this.profileApi = profileApi;
-  // }
 
 
   constructor() {
@@ -32,8 +23,6 @@ export class ChatsController {
   async fetchChats() {
     try {
       const chats: any = await this.api.read();
-
-      console.log('chats api', chats)
       
       chats.map(async (chat) => {
         const token = await this.getToken(chat.id);

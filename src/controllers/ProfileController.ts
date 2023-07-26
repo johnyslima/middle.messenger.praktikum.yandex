@@ -3,6 +3,7 @@ import store from '../utils/Store';
 import { Pages, ProfileData } from '../typings';
 import router from '../routing/router';
 import ProfileApi from '../api/profileApi';
+import { PROFILE_PAGE } from '../routing/routes';
 
 export class ProfileController {
   private readonly api: ProfileApi;
@@ -15,7 +16,7 @@ export class ProfileController {
     try {
       const user = await this.api.update(data);
       store.set('user.data', user);
-      router.go(Pages.PROFILE);
+      router.go(PROFILE_PAGE);
     } catch (error: any) {
       store.set('user.profileUpdate.error', error.reason);
     }
@@ -28,7 +29,7 @@ export class ProfileController {
         oldPassword, newPassword
       });
       
-      router.go(Pages.PROFILE);
+      router.go(PROFILE_PAGE);
     } catch (error: any) {
       store.set('user.changePassword.error', error.reason);
     }
@@ -42,7 +43,7 @@ export class ProfileController {
       const user = await this.api.changeAvatar(data);
       console.log(user)
       store.set('user.data', user);
-      router.go(Pages.PROFILE);
+      router.go(PROFILE_PAGE);
     } catch (error: any) {
       store.set('user.changeAvatar.error', error.reason);
     }

@@ -13,6 +13,7 @@ import template from "../login/login.hbs";
 import { Pages, PageType } from "../../../typings";
 import LoginController from "../../../controllers/LoginController";
 import router from "../../../routing/router";
+import { LOGIN_PAGE } from "../../../routing/routes";
 
 export class SignUp extends Block {
   constructor(props?: PageType) {
@@ -26,7 +27,7 @@ export class SignUp extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          router.go("/login");
+          router.go(LOGIN_PAGE);
         }
       },
       typeButton: ButtonType.LINK

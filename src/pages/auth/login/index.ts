@@ -7,6 +7,7 @@ import { withStore } from '../../../utils/Store';
 import LoginController from "../../../controllers/LoginController";
 import { Pages, PageType } from "../../../typings";
 import router from "../../../routing/router";
+import { REGISTRATION_PAGE } from "../../../routing/routes";
 
 export class Login extends Block {
   constructor(props?: PageType) {
@@ -21,7 +22,7 @@ export class Login extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          router.go(Pages.SIGN_UP);
+          router.go(REGISTRATION_PAGE);
         }
       },
       typeButton: ButtonType.LINK
@@ -37,12 +38,6 @@ export class Login extends Block {
           const passwordField = formContent.children.PasswordInput as FormInput;
 
           if(loginField.isValid(LoginValidator) && passwordField.isValid(PasswordValidator)) {
-            // store.setState({
-            //   loginPage: {
-            //     isLoading: true,
-            //   },
-            // });
-            // setTimeout(() => renderDom(Pages.CHAT), 1000)
             LoginController.signin({
               login: loginField.getValue(),
               password: passwordField.getValue(),

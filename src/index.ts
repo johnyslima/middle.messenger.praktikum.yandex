@@ -1,68 +1,49 @@
 import "./style/index.pcss";
 import "./components";
-import Router from "./routing/router";
-import {
-  Login,
-  SignUp,
-  ProfilePage,
-  Chat,
-  Error404,
-  Error500,
-  Main,
-} from "./pages";
+import Router, { BlockConstructable } from "./routing/router";
 import LoginController from "./controllers/LoginController";
-import { Pages } from "./typings";
+import { CHAT_PAGE, LOGIN_PAGE, REGISTRATION_PAGE, Routers } from "./routing/routes";
 
 export function removeBodyLoader() {
-  (document.querySelector('body') as HTMLElement).classList.remove(
-    'loader',
-  );
+  (document.querySelector("body") as HTMLElement).classList.remove("loader");
 }
 
 export function addBodyLoader() {
-  (document.querySelector('body') as HTMLElement).classList.add(
-    'loader',
-  );
+  (document.querySelector("body") as HTMLElement).classList.add("loader");
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  
   addBodyLoader();
-  Router
-  // .use("/", Main)
-  .use("/", Login)
-  .use("/signUp", SignUp)
-  .use("/profile", ProfilePage)
-  .use("/profileEdit", ProfilePage)
-  .use("/profileChangePassword", ProfilePage)
-  .use("/chat", Chat)
-  .use("/404", Error404)
-  .use("/500", Error500)
 
-  
+  Object.keys(Routers).map((item) =>
+    Router.use(item, Routers[item] as keyof BlockConstructable)
+  );
+
   let isProtectedRoute = true;
 
   switch (window.location.pathname) {
-    case Pages.LOGIN:
-    case Pages.SIGN_UP:
-      isProtectedRoute = false;
-      break;
+    case LOGIN_PAGE:
+    case REGISTRATION_PAGE:
+        isProtectedRoute = false;
+        break;
   }
 
   try {
     await LoginController.fetchUser();
-
     Router.start();
-
     if (!isProtectedRoute) {
-      Router.go(Pages.CHAT)
+      // Router.go(window.location.pathname)
+      // Router.go("/profile");
+      Router.go(CHAT_PAGE)
     }
     removeBodyLoader();
   } catch (e) {
+    // console.log('e', e)
     Router.start();
-
     if (isProtectedRoute) {
-      Router.go(Pages.LOGIN);
+      // Router.go("/login");
+      Router.go(LOGIN_PAGE);
+      // Router.go(Routes.SignIn);
     }
     removeBodyLoader();
   }

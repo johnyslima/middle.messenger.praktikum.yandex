@@ -2,6 +2,7 @@ import { Pages, SigninData, SignupData } from '../typings';
 import store from '../utils/Store';
 import router from '../routing/router';
 import AuthApi from '../api/loginApi';
+import { CHAT_PAGE, LOGIN_PAGE } from '../routing/routes';
 
 export class LoginController {
   private readonly api: AuthApi;
@@ -14,7 +15,7 @@ export class LoginController {
     try {
       await this.api.signin(data);
       // await this.fetchUser();
-      router.go(Pages.CHAT);
+      router.go(CHAT_PAGE);
     } catch (error: any) {
       store.set('user.signin.error', error.reason);
     }
@@ -24,7 +25,7 @@ export class LoginController {
     try {
       await this.api.signup(data);
       await this.fetchUser();
-      router.go(Pages.CHAT);
+      router.go(CHAT_PAGE);
     } catch (error: any) {
       store.set('user.signup.error', error.reason);
     }
@@ -39,7 +40,7 @@ export class LoginController {
     try {
       await this.api.logout();
 
-      router.go('/');
+      router.go(LOGIN_PAGE);
     } catch (error: any) {
       console.error(error.message);
     }
