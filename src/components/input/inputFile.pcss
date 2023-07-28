@@ -1,0 +1,17 @@
+input[type="file"]::file-selector-button {
+  font-weight: bold;
+  color: dodgerblue;
+  padding: 0.5em;
+  border: thin solid grey;
+  border-radius: 3px;
+  display: none;
+}
+
+input[type="file"] {
+  color: var(--primaryColor);
+  text-decoration: underline;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -7,9 +7,9 @@ interface IFormEvents {
 }
 
 interface FormProps {
-  events: IFormEvents;
+  events?: IFormEvents;
   className?: string;
-  template: TemplateDelegate | TemplateDelegate[];
+  template?: TemplateDelegate | TemplateDelegate[];
   formHead?: string;
   formBody: Block | string;
   formFooterButton?: Block;

@@ -1,5 +1,5 @@
 import { Avatar } from "../../components/avatar";
-import { Button, ButtonType, Form, FormInput } from "../../components";
+import { Button, ButtonType, Form, FormInput, Modal } from "../../components";
 import Block from "../../utils/Block";
 import templateProfile from "./profile.hbs";
 import arrowLeftIconSvg from "../../assets/icons/arrow_left.svg";
@@ -11,28 +11,51 @@ import {
   PhoneValidator,
   RepeatPasswordValidator,
 } from "../../validators";
-import { ProfileBody } from "../../blocks";
-import { ChildType, Pages, PageType } from "../../typings";
-import { renderDom } from "../../utils/Routers";
+import { ProfileBody, ChangeAvatarBody } from "../../blocks";
+import { ChildType, PageType } from "../../typings";
+import router from "../../routing/router";
+import LoginController from "../../controllers/LoginController";
+import { withStore } from "../../utils/Store";
+import ProfileController from "../../controllers/ProfileController";
+import { Url } from "../../typings/url";
+import { CHAT_PAGE, PROFILE_CHANGE_PASSWORD_PAGE, PROFILE_EDIT_PAGE, PROFILE_PAGE } from "../../routing/routes";
 
-export class Profile extends Block {
+class ProfilePageBase extends Block {
   constructor(props?: PageType) {
     super(props);
   }
 
   init() {
+    // LoginController.fetchUser();
     let child: ChildType = this.children;
-    const isPageProfile: boolean = this.props.currentPage === Pages.PROFILE;
+    const isPageProfile: boolean = window.location.pathname === PROFILE_PAGE;
     const isPageProfileEdit: boolean =
-      this.props.currentPage === Pages.PROFILE_EDIT;
+      window.location.pathname === PROFILE_EDIT_PAGE;
     const isPageProfilePasswordEdit: boolean =
-      this.props.currentPage === Pages.PROFILE_CHANGE_PASSWORD;
+      window.location.pathname === PROFILE_CHANGE_PASSWORD_PAGE;
+
+    const formContent = new ProfileBody({data: this.props});
+  
+    const form = new Form({
+      className: "profile-page__form-info",
+      events: {
+        submit: (event: Event) => {
+          event.preventDefault();
+        },
+      },
+      formBody: formContent,
+     });
+
     const buttonBack = new Button({
       className: "profile-page__button-back",
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.CHAT)
+          if(isPageProfileEdit || isPageProfilePasswordEdit) {
+            router.go(PROFILE_PAGE)
+          } else {
+            router.go(CHAT_PAGE)
+          }
         },
       },
       icon: arrowLeftIconSvg,
@@ -90,6 +113,14 @@ export class Profile extends Block {
           }
 
           if (isPageProfileEdit) {
+            ProfileController.update({
+              first_name: firstNameField.getValue(),
+              second_name: secondNameField.getValue(),
+              display_name: displayNameField.getValue(),
+              login: loginField.getValue(),
+              email: emailField.getValue(),
+              phone: phoneField.getValue()
+          });
             console.log({
               email: emailField.getValue(),
               firstName: firstNameField.getValue(),
@@ -101,14 +132,13 @@ export class Profile extends Block {
           }
 
           if (isPageProfilePasswordEdit) {
+            ProfileController.changePassword(oldPasswordField.getValue(), newPasswordRepeatField.getValue());
             console.log({
               oldPassword: oldPasswordField.getValue(),
               newPassword: newPasswordRepeatField.getValue(),
               newPasswordRepeat: repeatNewPasswordField.getValue(),
             });
           }
-
-          renderDom(Pages.PROFILE)
         },
       },
       typeButton: ButtonType.PRIMARY,
@@ -120,7 +150,7 @@ export class Profile extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.PROFILE_EDIT)
+          router.go(PROFILE_EDIT_PAGE)
         },
       },
       typeButton: ButtonType.LINK,
@@ -132,7 +162,7 @@ export class Profile extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.PROFILE_CHANGE_PASSWORD)
+          router.go(PROFILE_CHANGE_PASSWORD_PAGE)
         },
       },
       typeButton: ButtonType.LINK,
@@ -144,34 +174,71 @@ export class Profile extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.LOGIN)
+          LoginController.logout();
         },
       },
       typeButton: ButtonType.LINK,
     });
 
-    const avatar = new Avatar({
-      nameUser: "Иван",
-    });
-
-    const formContent = new ProfileBody({
-      currentPage: this.props.currentPage,
-    });
-
-    const form = new Form({
-      template: templateProfile,
-      className: "profile-page__form-info",
+    const modalAction = new Modal({
+      title: "Загрузите файл",
+      visible: "hide",
+      body: new Form({
+        className: "modal__form-change-avatar",
+        events: {
+          submit: (event: Event) => {
+            event.preventDefault();
+          },
+        },
+        formBody: new ChangeAvatarBody({data: this.props}),
+        formFooterButton: new Button({
+            label: "Поменять",
+            className: "button button--primary",
+            events: {
+              click: (event: Event) => {
+                event.preventDefault();
+                const fileField = modalAction.children.body.children.formBody.children.FileInput as FormInput;
+                const fileAvatar = fileField.getFile();
+                const formData = new FormData();
+                formData.append("avatar", fileAvatar)
+                ProfileController.changeAvatar(formData)
+              },
+            },
+            typeButton: ButtonType.PRIMARY,
+          })
+      }),
       events: {
-        submit: (event: Event) => {
-          event.preventDefault();
+        click: (event: Event) => {
+          event.stopPropagation();
+          const target = event.target as HTMLElement;
+          if(target.matches('.modal-wrap-background')) {
+            modalAction.closeModal()
+          }
         },
       },
-      formBody: formContent,
+    });
+
+    const avatar = new Avatar({
+      nameUser: this.props.display_name || this.props.first_name,
+      img: `${Url.RESOURCE}${this.props.avatar}`,
+      isEdit: isPageProfileEdit,
+      changeAvatarBtn: new Button({
+        className: "avatar-change-button",
+        events: {
+          click: (event: Event) => {
+            event.preventDefault();
+            modalAction.openModal()
+          },
+        },
+        label: "Поменять аватар",
+        typeButton: ButtonType.LINK,
+      })
     });
 
     child.ButtonBack = buttonBack;
     child.Avatar = avatar;
     child.Form = form;
+    
 
     if (isPageProfile) {
       child.ButtonChangeData = buttonChangeData;
@@ -179,10 +246,18 @@ export class Profile extends Block {
       child.ButtonLogout = buttonLogout;
     } else {
       child.ButtonSave = buttonSave;
+      child.ModalContext = modalAction;
     }
   }
 
   render() {
-    return this.compile(templateProfile, { ...this.props });
+    return this.compile(templateProfile, { ...this.props});
   }
 }
+
+const withStateToProps = withStore((state) => {
+  return({ 
+  ...state.user.data
+})})
+
+export default withStateToProps(ProfilePageBase as typeof Block);

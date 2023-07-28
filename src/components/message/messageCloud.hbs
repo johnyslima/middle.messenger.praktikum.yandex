@@ -1,3 +1,11 @@
 <div class="message-row {{ type }}">
-  <div class="message {{ type }}">{{ MessageText }}</div>
+  <div class="message {{ type }}">{{ MessageText }}
+    {{#if file}}
+    <div>{{file}}</div>
+    {{/if}}
+    {{#if img}}
+    <img src={{{ img }}} alt="change avatar">
+    {{/if}}
+    <div class="message__time">{{ Time }}</div>
+  </div>
 </div>

@@ -1,0 +1,11 @@
+<div class="tooltip-wrap {{visible}}">
+  <div class="tooltip {{ className }}">
+    {{#if actions}}
+    <ul>
+      {{#each actions}}
+      {{{this}}}
+      {{/each}}
+    </ul>
+    {{/if}}
+  </div>
+</div>

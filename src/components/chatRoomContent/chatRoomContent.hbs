@@ -1,8 +1,10 @@
 <div class="chat-room-content">
+  {{#if selectedChat}}
   <div class="chat-room-content__date">19 июня</div>
   <div class="chat-room-content__messages">
     {{#each MessagesArr}}
     {{{this}}}
     {{/each}}
   </div>
+  {{/if}}
 </div>

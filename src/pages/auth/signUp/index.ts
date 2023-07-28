@@ -10,8 +10,10 @@ import {
   RepeatPasswordValidator,
 } from "../../../validators";
 import template from "../login/login.hbs";
-import { renderDom } from "../../../utils/Routers";
 import { Pages, PageType } from "../../../typings";
+import LoginController from "../../../controllers/LoginController";
+import router from "../../../routing/router";
+import { LOGIN_PAGE } from "../../../routing/routes";
 
 export class SignUp extends Block {
   constructor(props?: PageType) {
@@ -25,7 +27,7 @@ export class SignUp extends Block {
       events: {
         click: (event: Event) => {
           event.preventDefault();
-          renderDom(Pages.LOGIN)
+          router.go(LOGIN_PAGE);
         }
       },
       typeButton: ButtonType.LINK
@@ -68,6 +70,15 @@ export class SignUp extends Block {
             console.error("Некоторые поля не проходят валидацию");
             return;
           }
+
+          LoginController.signup({
+            first_name: firstNameField.getValue(),
+            second_name: secondNameField.getValue(),
+            login: loginField.getValue(),
+            email: emailField.getValue(),
+            password: passwordField.getValue(),
+            phone: phoneField.getValue(),
+          }); 
 
           console.log({
             email: emailField.getValue(),
