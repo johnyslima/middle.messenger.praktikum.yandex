@@ -12,32 +12,42 @@
     margin-bottom: 10px;
     position: relative;
 
-    img {
-      max-width: 400px;
-    }
-
-    &.message-from {
+    .message-from {
       background-color: var(--primaryColor);
       border-top-left-radius: 0px;
     }
 
-    &.message-to {
+    .message-to {
       background-color: var(--borderColor);
       border-bottom-right-radius: 0px;
     }
 
-    &__time {
-      text-align: end;
-      font-size: 8px;
-      color: var(--grayColor);
+    img {
+      max-width: 400px;
     }
   }
 
-  &.message-from {
-    justify-content: flex-start;
+  .message__time {
+    text-align: end;
+    font-size: 8px;
+    color: var(--grayColor);
   }
 
-  &.message-to {
-    justify-content: flex-end;
+  .message-from {
+    background-color: var(--primaryColor);
+    border-top-left-radius: 0px;
   }
+
+  .message-to {
+    background-color: var(--borderColor);
+    border-bottom-right-radius: 0px;
+  }
+}
+
+.message-from {
+  justify-content: flex-start;
+}
+
+.message-to {
+  justify-content: flex-end;
 }

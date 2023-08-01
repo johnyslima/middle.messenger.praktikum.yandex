@@ -2,19 +2,19 @@
   display: flex;
   height: inherit;
 
-  &-left-field {
+  .chat-left-field {
     border-right: 1px solid var(--borderColor);
     width: 310px;
     min-width: 310px;
     overflow: hidden;
     height: inherit;
 
-    &-actions {
+    .chat-left-field-actions {
       display: flex;
       justify-content: space-between;
     }
 
-    &__profile-link {
+    .chat-left-field__profile-link {
       display: flex;
       justify-content: flex-end;
       margin: 15px 10px 20px;
@@ -28,7 +28,7 @@
       }
     }
 
-    &__search {
+    .chat-left-field__search {
       padding: 0px 10px 15px;
       margin-right: 10px;
 
@@ -44,7 +44,7 @@
     }
   }
 
-  &-right-field {
+  .chat-right-field {
     height: 100vh;
     width: 100%;
     padding: 0px 20px;
@@ -55,7 +55,7 @@
       display: flex;
       align-items: center;
 
-      &__avatar {
+      .chat-room-header__avatar {
         margin-right: 10px;
         width: 34px;
         height: 34px;
@@ -63,15 +63,15 @@
         border-radius: 50%;
       }
 
-      &__name {
+      .chat-room-header__name {
         margin-left: 10px;
         display: flex;
         width: 100%;
         justify-content: space-between;
         align-items: center;
 
-        &__context-menu-button,
-        &__context-attachment-button {
+        .chat-room-header__name__context-menu-button,
+        .chat-room-header__name__context-attachment-button {
           width: 30px;
           height: 30px;
           border-radius: 100%;
@@ -86,8 +86,8 @@
           }
         }
 
-        &__context-attachment-tooltip,
-        &__context-menu-tooltip {
+        .chat-room-header__name__context-attachment-tooltip,
+        .chat-room-header__name__context-menu-tooltip {
           ul {
             list-style-type: none;
             padding: 0px;
@@ -112,13 +112,13 @@
           }
         }
 
-        &__context-attachment-tooltip {
+        .chat-room-header__name__context-attachment-tooltip {
           position: absolute;
           bottom: 40px;
           left: -40px;
         }
 
-        &__context-menu-tooltip {
+        .chat-room-header__name__context-menu-tooltip {
           position: absolute;
           left: -130px;
           top: 20px;
@@ -133,7 +133,7 @@
       &::-webkit-scrollbar {
         width: 0px;
       }
-      &__date {
+      .chat-room-content__date {
         color: var(--grayColor);
         font-size: 12px;
         line-height: 12px;

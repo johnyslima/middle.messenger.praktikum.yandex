@@ -1,7 +1,8 @@
 {
   "plugins": {
-    "postcss-nested": true,
+    "postcss-nested": false,
     "postcss-simple-vars": true,
-    "postcss-icon-blender": true
+    "postcss-icon-blender": true,
+    "autoprefixer": true
   }
 }
