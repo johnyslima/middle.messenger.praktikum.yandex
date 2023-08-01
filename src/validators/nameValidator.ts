@@ -4,8 +4,6 @@ import { NameErrorText } from "./errorText";
 import { RegExpVariants } from "./regExpVariants";
 
 export class NameValidator extends Validator {
-  private static minLength: number = 3;
-  private static maxLength: number = 20;
 
   static validate(value: string, component: Block): boolean {
     if (value === "") {

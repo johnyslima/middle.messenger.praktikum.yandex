@@ -1,7 +1,7 @@
 import { Button, ButtonType } from "../../../components";
 import router from "../../../routing/router";
 import { CHAT_PAGE } from "../../../routing/routes";
-import { Pages, PageType } from "../../../typings";
+import { PageType } from "../../../typings";
 import Block from "../../../utils/Block";
 import template from "./errorPage.hbs";
 

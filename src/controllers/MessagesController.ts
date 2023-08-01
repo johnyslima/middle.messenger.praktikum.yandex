@@ -92,7 +92,7 @@ class MessagesController {
     transport.on(WSTransportEvents.Close, () => this.onClose(id));
   }
 
-  async sendFile(data: FormData) { 
+  async sendFile(data: FormData): Promise<any> { 
     return await new ResourcesApi().sendFile(data)
   }
 

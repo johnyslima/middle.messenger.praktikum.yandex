@@ -1,5 +1,7 @@
-import "./style/index.pcss";
+// import "./style/index.pcss";
 import "./components";
+import './style.pcss';
+import 'icon-blender/css/icon-blender.css';
 import Router, { BlockConstructable } from "./routing/router";
 import LoginController from "./controllers/LoginController";
 import { CHAT_PAGE, LOGIN_PAGE, REGISTRATION_PAGE, Routers } from "./routing/routes";

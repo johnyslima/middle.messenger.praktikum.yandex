@@ -1,7 +1,7 @@
 import Block from "../../utils/Block";
 import template from "./main.hbs";
 import { Button, ButtonType } from "../../components";
-import { ChildType, Pages, PageType } from "../../typings";
+import { ChildType, PageType } from "../../typings";
 import router from "../../routing/router";
 
 

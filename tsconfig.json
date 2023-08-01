@@ -15,5 +15,6 @@
       "sourceMap": true,
       "strictNullChecks": true,
       "strictPropertyInitialization": false,
-  }
+  },
+  "ts-node": { "files": true }
 }

@@ -13,7 +13,6 @@ import { Modal } from "../modal";
 import { Form } from "../form";
 import { FormInput } from "../input";
 import ChatsController from "../../controllers/ChatsController";
-import router from "../../routing/router";
 import { Url } from "../../typings";
 
 interface ChatRoomHeaderProps {
@@ -34,11 +33,6 @@ class ChatRoomHeader extends Block {
       inputName: "create_chat",
       type: "text",
       typeField: "text",
-      // events: {
-      //   focusout: () => {
-      //     loginField.isValid(LoginValidator);
-      //   },
-      // },
     });
 
     const modalAction = new Modal({

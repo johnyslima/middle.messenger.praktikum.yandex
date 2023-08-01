@@ -5,7 +5,7 @@ import template from "./login.hbs";
 import { LoginValidator, PasswordValidator } from "../../../validators";
 import { withStore } from '../../../utils/Store'; 
 import LoginController from "../../../controllers/LoginController";
-import { Pages, PageType } from "../../../typings";
+import { PageType } from "../../../typings";
 import router from "../../../routing/router";
 import { REGISTRATION_PAGE } from "../../../routing/routes";
 
