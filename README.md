@@ -15,13 +15,21 @@
 - PostCss
 - Handlebars.js
 - TypeScript
-- Parcel
+- Webpack
 - Express
+- Mocha
+- Chai
 
 Запуск Development Mode
 --
 ```
 npm run dev
+```
+
+Запуск Тестов
+--
+```
+npm run test
 ```
 
 Запуск Production Mode
