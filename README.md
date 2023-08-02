@@ -3,7 +3,7 @@
 
 - «[Макет в Figma](https://www.figma.com/file/majRVWdE7xvznWAeSxsuUC/Design-Chat-Yandex-Pract?node-id=3%3A1712&t=bCO5gGR7jvCExcpA-0)»,
 - «[Ссылка на сайт Netlify](https://grand-salamander-ce0ff7.netlify.app/)»,
-- «[Pull request](https://github.com/johnyslima/middle.messenger.praktikum.yandex/pull/4)»
+- «[Pull request](https://github.com/johnyslima/middle.messenger.praktikum.yandex/pull/5)»
 
 ---
 
