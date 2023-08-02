@@ -1,27 +1,30 @@
 .input-profile,
 div.input-profile {
   color: var(--grayColor);
-  border: none;
   background-color: var(--backgroundColor);
-  width: 280px;
   text-align: right;
+  border: none;
+  width: 280px;
+}
 
-  &:active,
-  &:focus {
-    outline: 0;
-    outline-offset: 0;
-  }
+.input-profile:active,
+.input-profile:focus,
+div.input-profile:active,
+div.input-profile:focus {
+  outline-offset: 0;
+  outline: 0;
+}
 
-  &:hover {
-    cursor: pointer;
-  }
+.input-profile:hover,
+div.input-profile:hover {
+  cursor: pointer;
 }
 
 div.input-profile {
   font-size: 13px;
   line-height: 13px;
+}
 
-  &:hover {
-    cursor: default;
-  }
+div.input-profile:hover {
+  cursor: default;
 }

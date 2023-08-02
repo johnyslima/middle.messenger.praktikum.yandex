@@ -1,9 +1,9 @@
 import { ChildType } from "../../typings/childType";
 import Block from "../../utils/Block";
 import { Button, ButtonType } from "../button";
-import kebabMenuIconSvg from "../../assets/icons/kebab_menu.svg";
-import addUserIconSvg from "../../assets/icons/add_user.svg";
-import removeUserIconSvg from "../../assets/icons/remove_user.svg";
+import kebabMenuIconSvg from "../../assets/icons/kebab_menu.png";
+import addUserIconSvg from "../../assets/icons/add_user.png";
+import removeUserIconSvg from "../../assets/icons/remove_user.png";
 import template from "./chatRoomHeader.hbs";
 import Tooltip from "../tootlip";
 import defaultUserAvatarUrl from "../../assets/images/default_user.png";

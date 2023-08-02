@@ -52,22 +52,16 @@ module.exports = {
         ],
       },
       {
-        test: /\.svg/,
-        use: {
-          loader: "svg-url-loader",
-          options: {
-            // make all svg images to work in IE
-            iesafe: true,
-          },
-        },
-      },
-      {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
             loader: "file-loader",
           },
         ],
+      },
+      {
+        test: /\.svg$/,
+        loader: "svg-inline-loader",
       },
     ],
   },

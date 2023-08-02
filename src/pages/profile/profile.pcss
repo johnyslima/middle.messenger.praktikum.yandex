@@ -1,150 +1,154 @@
 .profile-page {
   height: inherit;
   display: flex;
+}
 
-  .profile-page__button-back {
-    height: 100vh;
-    width: 64px;
-    display: flex;
-    align-items: center;
-    background-color: var(--darkBackgroundColor);
-    border-right: 1px solid var(--borderColor);
-    justify-content: center;
-    cursor: pointer;
+.profile-page__button-back {
+  background-color: var(--darkBackgroundColor);
+  border-right: 1px solid var(--borderColor);
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 100vh;
+  display: flex;
+}
 
-    &:hover {
-      background-color: var(--shadowColor);
-    }
+.profile-page__button-back:hover {
+  background-color: var(--shadowColor);
+}
 
-    div {
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      background-color: var(--primaryColor);
-      justify-content: center;
-      border-radius: 100%;
-    }
-  }
+.profile-page__button-back div {
+  background-color: var(--primaryColor);
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  display: flex;
+}
 
-  .profile-page__form {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 510px;
-    margin: 0 auto;
+.profile-page__form {
+  flex-direction: column;
+  align-items: center;
+  width: 510px;
+  margin: 0 auto;
+  display: flex;
+}
 
-    .profile-page__form-avatar {
-      margin-top: 60px;
-    }
+.profile-page__form-avatar {
+  margin-top: 60px;
+}
 
-    .profile-page__form-avatar,
-    .profile-page__form-avatar-edit {
-      width: 130px;
-      height: 130px;
-      background-color: var(--primaryColor);
-      border-radius: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.profile-page__form-avatar,
+.profile-page__form-avatar-edit {
+  background-color: var(--primaryColor);
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 130px;
+  display: flex;
+}
 
-      img {
-        width: inherit;
-        height: inherit;
-        border-radius: inherit;
-      }
+.profile-page__form-avatar img,
+.profile-page__form-avatar-edit img {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+}
 
-      .profile-page__form-avatar-edit {
-        background-color: var(--shadowColor);
-        opacity: 0;
-        display: flex;
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        transition: all 0.5s;
+.profile-page__form-avatar-edit,
+.profile-page__form-avatar-edit-edit {
+  background-color: var(--shadowColor);
+  opacity: 0;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+  display: flex;
+  position: absolute;
+}
 
-        span {
-          font-size: 13px;
-          line-height: 14px;
-          text-align: center;
-          width: 64px;
-          position: absolute;
-        }
+.profile-page__form-avatar-edit span,
+.profile-page__form-avatar-edit-edit span {
+  text-align: center;
+  width: 64px;
+  font-size: 13px;
+  line-height: 14px;
+  position: absolute;
+}
 
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
+.profile-page__form-avatar-edit:hover,
+.profile-page__form-avatar-edit-edit:hover {
+  opacity: 1;
+}
 
-    .profile-page__form-name {
-      font-size: 16px;
-      line-height: 16px;
-      text-align: center;
-      color: var(--textColorRegular);
-      margin-top: 20px;
-    }
+.profile-page__form-name {
+  text-align: center;
+  color: var(--textColorRegular);
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 16px;
+}
 
-    .profile-page__form-info {
-      margin-top: 60px;
-      width: 100%;
+.profile-page__form-info {
+  width: 100%;
+  margin-top: 60px;
+}
 
-      .profile-page__form-info__row {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row-reverse;
-        align-items: center;
-        border-bottom: 1px solid var(--borderColor);
-        padding: 10px 0px;
-      }
+.profile-page__form-info__row {
+  border-bottom: 1px solid var(--borderColor);
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+}
 
-      .profile-page__form-info__label,
-      .profile-page__form-info__value {
-        font-size: 13px;
-        line-height: 13px;
-      }
+.profile-page__form-info__label,
+.profile-page__form-info__value {
+  font-size: 13px;
+  line-height: 13px;
+}
 
-      .profile-page__form-info__label {
-        color: var(--textColorRegular);
-      }
+.profile-page__form-info__label {
+  color: var(--textColorRegular);
+}
 
-      .profile-page__form-info__value {
-        color: var(--grayColor);
-      }
-    }
+.profile-page__form-info__value {
+  color: var(--grayColor);
+}
 
-    .profile-page__form-actions {
-      margin-top: 60px;
-      width: 100%;
-      font-size: 13px;
-      line-height: 13px;
+.profile-page__form-actions {
+  width: 100%;
+  margin-top: 60px;
+  font-size: 13px;
+  line-height: 13px;
+}
 
-      div {
-        padding: 10px 0px;
-        cursor: pointer;
-      }
+.profile-page__form-actions div {
+  cursor: pointer;
+  padding: 10px 0;
+}
 
-      .profile-page__form-actions__edit {
-        color: var(--primaryColor);
-        border-bottom: 1px solid var(--borderColor);
-      }
+.profile-page__form-actions__edit {
+  color: var(--primaryColor);
+  border-bottom: 1px solid var(--borderColor);
+}
 
-      .profile-page__form-actions__logout {
-        color: var(--alarmColor);
-      }
-    }
+.profile-page__form-actions__logout {
+  color: var(--alarmColor);
+}
 
-    .profile-page__form-save-button {
-      margin-top: 60px;
-    }
-  }
+.profile-page__form-save-button {
+  margin-top: 60px;
 }
 
 .modal__form-change-avatar {
-  display: flex;
-  align-items: center;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  display: flex;
 }

@@ -1,27 +1,29 @@
 .status-error-page {
   background-color: var(--backgroundColor);
-  height: 100vh;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  display: flex;
+}
 
-  &__error-code {
-    font-size: 40px;
-    line-height: 40px;
-    color: var(--textColorRegular);
-  }
-  &__error-message {
-    margin-top: 20px;
-    font-size: 20px;
-    line-height: 20px;
-    color: var(--textColorRegular);
-  }
-  &__back-link {
-    color: var(--primaryColor);
-    cursor: pointer;
-    margin-top: 70px;
-    font-size: 11px;
-    line-height: 11px;
-  }
+.status-error-page__error-code {
+  color: var(--textColorRegular);
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.status-error-page__error-message {
+  color: var(--textColorRegular);
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.status-error-page__back-link {
+  color: var(--primaryColor);
+  cursor: pointer;
+  margin-top: 70px;
+  font-size: 11px;
+  line-height: 11px;
 }

@@ -1,10 +1,10 @@
 import { ChildType } from "../../typings";
 import Block from "../../utils/Block";
 import { Button, ButtonType } from "../button";
-import addIconSvg from "../../assets/icons/add_icon.svg";
-import arrowRightIconSvg from "../../assets/icons/arrow_right.svg";
-import photoAttachIconSvg from "../../assets/icons/photo_attach.svg";
-import fileAttachIconSvg from "../../assets/icons/file_attach.svg";
+import addIconSvg from "../../assets/icons/add_icon.png";
+import arrowRightIconSvg from "../../assets/icons/arrow_right.png";
+import photoAttachIconSvg from "../../assets/icons/photo_attach.png";
+import fileAttachIconSvg from "../../assets/icons/file_attach.png";
 import template from "./chatRoomMessagePanel.hbs";
 import { FormInput, InputTypeField } from "../input";
 import { MessageValidator } from "../../validators";
@@ -61,6 +61,7 @@ class ChatRoomMessagePanel extends Block {
                 }),
               });
               modalAction.openModal();
+              mediaAction.closeModal();
             },
           },
         }),
@@ -100,6 +101,7 @@ class ChatRoomMessagePanel extends Block {
                 }),
               });
               modalAction.openModal();
+              mediaAction.closeModal();
             },
           },
         }),

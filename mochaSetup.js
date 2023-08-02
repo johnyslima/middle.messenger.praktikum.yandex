@@ -1,9 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
+const fs = require("fs");
 const { JSDOM } = require("jsdom");
 const Handlebars = require("handlebars");
-const fs = require("fs");
 
-// eslint-disable-next-line quotes
 const { window } = new JSDOM('<div id="root"></div>', {
   url: "http://localhost:3000",
 });
@@ -20,9 +19,5 @@ require.extensions[".hbs"] = function (module, filename) {
 };
 
 require.extensions[".pcss"] = function () {
-  module.exports = () => ({});
-};
-
-require.extensions[".svg"] = function () {
   module.exports = () => ({});
 };

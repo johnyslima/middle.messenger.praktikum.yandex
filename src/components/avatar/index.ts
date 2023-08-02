@@ -1,6 +1,6 @@
 import Block from "../../utils/Block";
 import template from "./avatar.hbs";
-import emptyPictIconSvg from "../../assets/icons/empty_pict.svg";
+import emptyPictIconSvg from "../../assets/icons/empty_pict.png";
 
 interface AvatarProps {
   nameUser: string;
