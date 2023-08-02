@@ -3,11 +3,11 @@ export type Indexed<T = any> = {
 };
 
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
-  for (let p in rhs) {
-    if (!rhs.hasOwnProperty(p)) {
+  for (const p in rhs) {
+    if (!Object.prototype.hasOwnProperty.call(rhs, p)) {
       continue;
     }
-
+  
     try {
       if (rhs[p].constructor === Object) {
         rhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
@@ -24,23 +24,16 @@ export function merge(lhs: Indexed, rhs: Indexed): Indexed {
 
 export function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
   if (typeof object !== 'object' || object === null) {
-      return object;
+    return object;
   }
 
   if (typeof path !== 'string') {
-      throw new Error('path must be string');
+    throw new Error('path must be string');
   }
 
   const result = path.split('.').reduceRight<Indexed>((acc, key) => ({
-      [key]: acc,
+    [key]: acc,
   }), value as any);
 
   return merge(object as Indexed, result);
-}  
-
-
-export function getAvatar(avatar: string): string {
-return avatar
-      ? `https://ya-praktikum.tech/api/v2/resources/${avatar}` 
-      : 'https://cs6.pikabu.ru/avatars/1121/x1121129-2144512139.png';
 }

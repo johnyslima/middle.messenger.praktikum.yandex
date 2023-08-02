@@ -5,7 +5,6 @@ import {
   Chat,
   Error404,
   Error500,
-  Main,
 } from "../pages";
 
 export type TRoutes = {

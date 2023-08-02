@@ -1,20 +1,18 @@
 import { ChildType } from "../../typings";
 import Block from "../../utils/Block";
 import { Button, ButtonType } from "../button";
-import addIconSvg from "../../assets/icons/add_icon.svg";
-import arrowRightIconSvg from "../../assets/icons/arrow_right.svg";
-import photoAttachIconSvg from "../../assets/icons/photo_attach.svg";
-import fileAttachIconSvg from "../../assets/icons/file_attach.svg";
-import locationAttachIconSvg from "../../assets/icons/location_attach.svg";
+import addIconSvg from "../../assets/icons/add_icon.png";
+import arrowRightIconSvg from "../../assets/icons/arrow_right.png";
+import photoAttachIconSvg from "../../assets/icons/photo_attach.png";
+import fileAttachIconSvg from "../../assets/icons/file_attach.png";
 import template from "./chatRoomMessagePanel.hbs";
 import { FormInput, InputTypeField } from "../input";
-import { MessageValidator, NameValidator } from "../../validators";
+import { MessageValidator } from "../../validators";
 import Tooltip from "../tootlip";
 import TooltipAction from "../tooltipAction";
 import MessagesController from "../../controllers/MessagesController";
 import { withStore } from "../../utils/Store";
 import { Form } from "../form";
-import { ChangeAvatarBody } from "../../blocks";
 import { Modal } from "../modal";
 import { IResource } from "../../api/resourcesApi";
 
@@ -50,12 +48,10 @@ class ChatRoomMessagePanel extends Block {
                       click: async (event: Event) => {
                         event.preventDefault();
                         const fileField = modalAction.children.body.children.formBody as FormInput;
-                        console.log('fileField', fileField.getFile())
                         const fileAvatar = fileField.getFile();
                         const formData = new FormData();
                         formData.append("resource", fileAvatar);
                         const file: IResource = await MessagesController.sendFile(formData);
-                        console.log('MessagesController', MessagesController)
                         MessagesController.sendMessage(this.props.selectedChat, (file.id).toString(), 'file');
                         modalAction.closeModal();
                       },
@@ -64,8 +60,8 @@ class ChatRoomMessagePanel extends Block {
                   }),
                 }),
               });
-              console.log("Фото или Видео");
               modalAction.openModal();
+              mediaAction.closeModal();
             },
           },
         }),
@@ -104,30 +100,11 @@ class ChatRoomMessagePanel extends Block {
                   }),
                 }),
               });
-              console.log("Файл");
               modalAction.openModal();
+              mediaAction.closeModal();
             },
           },
         }),
-        //   new TooltipAction({
-        //     icon: locationAttachIconSvg,
-        //     iconClassName: ' ib-22px primary-color',
-        //     text: 'Локация',
-        //     events: {
-        //         click: () => {
-        //             // this._modal.setProps({
-        //             //     title: 'Отправить Фото или Видео',
-        //             //     state: 'show',
-        //             //     body: new Browse({
-        //             //         onSubmit: (e: SubmitEvent) => {
-        //             //             console.log('Отправить Фото или Видео')
-        //             //         }
-        //             //     })
-        //             // })
-        //             console.log('Фото или Видео')
-        //         }
-        //     }
-        // })
       ],
     });
 
@@ -177,9 +154,7 @@ class ChatRoomMessagePanel extends Block {
           }
 
           const message = messageEnterField.getValue();
-          console.log("messageEnterField", messageEnterField, message);
           MessagesController.sendMessage(this.props.selectedChat, message);
-          console.log(messageEnterField.getValue());
         },
       },
       icon: arrowRightIconSvg,

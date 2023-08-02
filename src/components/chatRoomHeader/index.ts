@@ -1,9 +1,9 @@
 import { ChildType } from "../../typings/childType";
 import Block from "../../utils/Block";
 import { Button, ButtonType } from "../button";
-import kebabMenuIconSvg from "../../assets/icons/kebab_menu.svg";
-import addUserIconSvg from "../../assets/icons/add_user.svg";
-import removeUserIconSvg from "../../assets/icons/remove_user.svg";
+import kebabMenuIconSvg from "../../assets/icons/kebab_menu.png";
+import addUserIconSvg from "../../assets/icons/add_user.png";
+import removeUserIconSvg from "../../assets/icons/remove_user.png";
 import template from "./chatRoomHeader.hbs";
 import Tooltip from "../tootlip";
 import defaultUserAvatarUrl from "../../assets/images/default_user.png";
@@ -13,8 +13,7 @@ import { Modal } from "../modal";
 import { Form } from "../form";
 import { FormInput } from "../input";
 import ChatsController from "../../controllers/ChatsController";
-import router from "../../routing/router";
-import { Url } from "../../typings";
+import { ChatData, Url } from "../../typings";
 
 interface ChatRoomHeaderProps {
   avatar?: SVGElement;
@@ -34,11 +33,6 @@ class ChatRoomHeader extends Block {
       inputName: "create_chat",
       type: "text",
       typeField: "text",
-      // events: {
-      //   focusout: () => {
-      //     loginField.isValid(LoginValidator);
-      //   },
-      // },
     });
 
     const modalAction = new Modal({
@@ -172,10 +166,9 @@ class ChatRoomHeader extends Block {
 
 const withStateToProps = withStore((state) => {
   const selectedChatId = state.selectedChat;
-  const currentChat: any = state.chats.filter(
-    (item: any) => item.id === selectedChatId
+  const currentChat: ChatData = state.chats.filter(
+    (item: ChatData) => item.id === selectedChatId
     )[0];
-    console.log('currentChat', currentChat)
 
   return {
     selectedChat: state.selectedChat,

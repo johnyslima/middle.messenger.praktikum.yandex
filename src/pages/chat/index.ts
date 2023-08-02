@@ -81,11 +81,6 @@ class Chat extends Block {
           inputName: "create_chat",
           type: "text",
           typeField: "text",
-          // events: {
-          //   focusout: () => {
-          //     loginField.isValid(LoginValidator);
-          //   },
-          // },
         }),
         formFooterButton: new Button({
             label: "Создать",

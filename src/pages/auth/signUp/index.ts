@@ -10,7 +10,7 @@ import {
   RepeatPasswordValidator,
 } from "../../../validators";
 import template from "../login/login.hbs";
-import { Pages, PageType } from "../../../typings";
+import { PageType } from "../../../typings";
 import LoginController from "../../../controllers/LoginController";
 import router from "../../../routing/router";
 import { LOGIN_PAGE } from "../../../routing/routes";

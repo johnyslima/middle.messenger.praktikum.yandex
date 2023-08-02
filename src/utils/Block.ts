@@ -2,6 +2,9 @@ import { EventBus } from "./EventBus";
 import { nanoid } from 'nanoid';
 
 class Block<P extends Record<string, any> = any, E extends HTMLElement = HTMLElement> {
+  getValue(): string {
+    throw new Error("Method not implemented.");
+  }
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -14,6 +17,7 @@ class Block<P extends Record<string, any> = any, E extends HTMLElement = HTMLEle
   public children: Record<string, Block>;
   private eventBus: () => EventBus;
   private _element: E | null = null;
+  //getValue: () => string;
 
   /** JSDoc
    * @param {string} tagName
@@ -109,7 +113,7 @@ class Block<P extends Record<string, any> = any, E extends HTMLElement = HTMLEle
     }
   }
 
-  protected componentDidUpdate(oldProps: P, newProps: P) {
+  protected componentDidUpdate(_oldProps: P, _newProps: P) {
     return true;
   }
 

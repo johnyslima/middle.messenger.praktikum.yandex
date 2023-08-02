@@ -1,4 +1,4 @@
-export interface ChatData {
+export type ChatData = {
   id: number;
   title: string;
   avatar: string;

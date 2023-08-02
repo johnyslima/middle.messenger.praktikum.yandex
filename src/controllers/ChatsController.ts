@@ -1,6 +1,6 @@
 import ChatsApi from '../api/chatApi';
 import ProfileApi from '../api/profileApi';
-import { IUserData } from '../typings';
+import { ChatData, IUserData } from '../typings';
 import store from '../utils/Store';
 import MessagesController from './MessagesController';
 
@@ -22,9 +22,9 @@ export class ChatsController {
 
   async fetchChats() {
     try {
-      const chats: any = await this.api.read();
+      const chats: ChatData[] = await this.api.read();
       
-      chats.map(async (chat) => {
+      chats.map(async (chat: ChatData) => {
         const token = await this.getToken(chat.id);
         
         await MessagesController.connect(chat.id, token);
@@ -51,7 +51,7 @@ export class ChatsController {
 
   async getLoginId(login: string)
   {
-    const users = await this.profileApi.searchUsers(login);
+    const users: any = await this.profileApi.searchUsers(login);
     const user = users.filter((user: IUserData) => user.login === login);
     if(!user) {
       throw new Error('Пользователь с таким логимом не найден!');
@@ -94,7 +94,6 @@ export class ChatsController {
 
   async deleteChat(chatId: number): Promise<IResult> {
     try {
-      console.log('chatId', chatId, this.api)
       await this.api.delete(chatId);
       this.fetchChats();
       return {

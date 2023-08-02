@@ -1,5 +1,6 @@
-import "./style/index.pcss";
 import "./components";
+import './style';
+import 'icon-blender/css/icon-blender.css';
 import Router, { BlockConstructable } from "./routing/router";
 import LoginController from "./controllers/LoginController";
 import { CHAT_PAGE, LOGIN_PAGE, REGISTRATION_PAGE, Routers } from "./routing/routes";
@@ -32,18 +33,13 @@ window.addEventListener("DOMContentLoaded", async () => {
     await LoginController.fetchUser();
     Router.start();
     if (!isProtectedRoute) {
-      // Router.go(window.location.pathname)
-      // Router.go("/profile");
       Router.go(CHAT_PAGE)
     }
     removeBodyLoader();
   } catch (e) {
-    // console.log('e', e)
     Router.start();
     if (isProtectedRoute) {
-      // Router.go("/login");
       Router.go(LOGIN_PAGE);
-      // Router.go(Routes.SignIn);
     }
     removeBodyLoader();
   }

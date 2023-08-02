@@ -1,4 +1,3 @@
-import { ChildType } from "../../typings";
 import Block from "../../utils/Block";
 import template from "./modal.hbs";
 
@@ -10,7 +9,7 @@ interface ModalProps {
     click: (event: Event) => void;
   };
   title: string;
-  body?: any;
+  body?: Block;
   action?: Block;
 }
 

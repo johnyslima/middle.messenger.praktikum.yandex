@@ -1,3 +1,4 @@
+import { ChatData } from '../typings';
 import BaseApi from './common';
 
 export default class ChatsApi extends BaseApi
@@ -6,22 +7,20 @@ export default class ChatsApi extends BaseApi
         super('/chats');
     }
 
-    public create(data: {title: string}) {
+    public create(data: {title: string}): Promise<unknown> {
         return this.http.post('/', data);
     }
     
-    public read() {
+    public read(): Promise<ChatData[]> {
         return this.http.get('/');
     }
 
-    public async getToken(id: number) {
-        const response = await this.http.post(`/token/${id}`);
+    public async getToken(id: number): Promise<string> {
+        const response: any = await this.http.post(`/token/${id}`);
         return response.token;
     }
 
     public addUserToChat(userId: number, chatId: number) {
-      console.log('userId', userId)
-      console.log('chatId', chatId)
         return this.http.put('/users', {
             users: [
                 userId
