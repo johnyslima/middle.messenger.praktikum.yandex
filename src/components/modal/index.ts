@@ -9,7 +9,7 @@ interface ModalProps {
     click: (event: Event) => void;
   };
   title: string;
-  body?: any;
+  body?: Block;
   action?: Block;
 }
 

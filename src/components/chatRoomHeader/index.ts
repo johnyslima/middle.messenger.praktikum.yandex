@@ -13,7 +13,7 @@ import { Modal } from "../modal";
 import { Form } from "../form";
 import { FormInput } from "../input";
 import ChatsController from "../../controllers/ChatsController";
-import { Url } from "../../typings";
+import { ChatData, Url } from "../../typings";
 
 interface ChatRoomHeaderProps {
   avatar?: SVGElement;
@@ -166,8 +166,8 @@ class ChatRoomHeader extends Block {
 
 const withStateToProps = withStore((state) => {
   const selectedChatId = state.selectedChat;
-  const currentChat: any = state.chats.filter(
-    (item: any) => item.id === selectedChatId
+  const currentChat: ChatData = state.chats.filter(
+    (item: ChatData) => item.id === selectedChatId
     )[0];
 
   return {
