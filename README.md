@@ -1,40 +1,40 @@
-### Создание чата на чистом JS с использованием шаблонизатора Handlebars
----
+В production версии npm audit не выкидывает ошибок
+__
+```
+npm audit --production
+```
 
-- «[Макет в Figma](https://www.figma.com/file/majRVWdE7xvznWAeSxsuUC/Design-Chat-Yandex-Pract?node-id=3%3A1712&t=bCO5gGR7jvCExcpA-0)»,
-- «[Ссылка на сайт Netlify](https://musical-paprenjak-f1ccbd.netlify.app/messenger)»,
-- «[Pull request](https://github.com/johnyslima/middle.messenger.praktikum.yandex/pull/5)»
+Ссылка на макет
+https://www.figma.com/file/q5QZGfBMPnQVNkvHyI4BLn/Chat-(Copy)?node-id=0%3A1&t=9pAEceO2LdEbha3U-1
 
----
+Ссылка на сайт в Yandex Cloud
+https://bba580ndk4sc0t1l2m4t.containers.yandexcloud.net/
 
-Во третьем спринте был реализован роутинг страниц, api для всех страниц, а также WebSocket для realtime выдачи сообщений.
+Ссылка на сайт
+https://musical-pastelito-875b8b.netlify.app/
 
-
-## **Технологии**
-- HTML
-- PostCss
-- Handlebars.js
-- TypeScript
-- Webpack
-- Express
-- Mocha
-- Chai
-
-Запуск Development Mode
+Запуск проекта в Dev Режиме
 --
 ```
 npm run dev
 ```
 
-Запуск Тестов
+Запуск тестов
 --
 ```
 npm run test
 ```
 
-Запуск Production Mode
+Запуск сервера на NodeJS
 ---
 ```
 npm run build 
 npm run start
 ```
+
+users:
+    login: login11223344
+    password: Login11223344!
+    
+    login: login112233
+    password: Test9595!
