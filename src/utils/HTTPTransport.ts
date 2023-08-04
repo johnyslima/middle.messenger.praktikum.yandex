@@ -20,8 +20,28 @@ export default class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  public get<Response>(path = '/'): Promise<Response> {
-    return this.request<Response>(this.endpoint + path);
+  static isObject(value: unknown) {
+    return Object.prototype.toString.call(value) === "[object Object]";
+  }
+
+  static queryStringify(data: any): string {
+    if (!this.isObject(data)) {
+      throw new Error("Data must be an object");
+    }
+
+    const keys = Object.keys(data);
+    return keys.reduce((result, key, index) => {
+      const value = data[key];
+      const end = index < keys.length - 1 ? "&" : "";
+      return `${result}${key}=${value}${end}`;
+    }, "?");
+  }
+
+  public get<Response>(path = '/', data?: unknown): Promise<Response> {
+    return this.request<Response>(
+      !!data 
+      ? `${this.endpoint + path}${HTTPTransport.queryStringify(data)}`
+      : this.endpoint + path);
   }
 
   public post<Response = void>(path: string, data?: unknown): Promise<Response> {
