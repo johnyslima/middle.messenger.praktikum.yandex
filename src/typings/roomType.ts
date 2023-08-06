@@ -25,7 +25,7 @@ export type RoomType = {
   id?: string | number;
   avatar?: SVGElement;
   title?: string;
-  last_message?: string;
+  last_message?: any;
   unread_count?: number;
   created_by?: number;
   lastMessageFromYou?: boolean;

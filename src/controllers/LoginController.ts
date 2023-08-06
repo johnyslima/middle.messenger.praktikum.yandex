@@ -1,4 +1,4 @@
-import { Pages, SigninData, SignupData } from '../typings';
+import { SigninData, SignupData } from '../typings';
 import store from '../utils/Store';
 import router from '../routing/router';
 import AuthApi from '../api/loginApi';
@@ -14,7 +14,6 @@ export class LoginController {
   async signin(data: SigninData) {
     try {
       await this.api.signin(data);
-      // await this.fetchUser();
       router.go(CHAT_PAGE);
     } catch (error: any) {
       store.set('user.signin.error', error.reason);

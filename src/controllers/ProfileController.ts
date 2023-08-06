@@ -1,6 +1,6 @@
 import store from '../utils/Store';
 
-import { Pages, ProfileData } from '../typings';
+import { ProfileData } from '../typings';
 import router from '../routing/router';
 import ProfileApi from '../api/profileApi';
 import { PROFILE_PAGE } from '../routing/routes';

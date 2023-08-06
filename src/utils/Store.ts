@@ -1,6 +1,7 @@
 import { set } from './Helpers';
 import { EventBus } from './EventBus';
 import Block from './Block';
+import { ChatData } from '../typings';
 
 export enum StoreEvents {
   Updated = 'updated'
@@ -20,20 +21,23 @@ export class Store extends EventBus {
 }
 
 type TData = {
-  data: {};
+  data: {
+    id: string | number;
+  };
   error: string;
   isLoading: boolean;
 }
 
 interface IStore {
-  user?: TData,
-  chats?: TData,
+  user: TData,
+  chats: ChatData[],
+  messages: ChatData[],
   selectedChat?: any,
 }
 
 const store = new Store();
 
-export function withStore(mapStateToProps: (state: any) => any) {
+export function withStore(mapStateToProps: (state: IStore) => any) {
   return function wrap(Component: typeof Block){
     return class WithStore extends Component {
       

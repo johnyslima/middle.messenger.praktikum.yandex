@@ -1,28 +1,23 @@
-import { Url } from "../typings/url";
-
-const METHODS = {
-  GET: "GET",
-  POST: "POST",
-  PUT: "PUT",
-  DELETE: "DELETE",
-};
-
-interface Options {
-  data?: any;
-  headers?: Record<string, string>;
-  timeout?: number;
-  responseType?: ResponseType;
-  method?: string;
+export enum Method {
+  Get = 'Get',
+  Post = 'Post',
+  Put = 'Put',
+  Patch = 'Patch',
+  Delete = 'Delete'
 }
 
-type HTTPMethod = (url: string, data?: Options) => Promise<unknown>;
+type Options = {
+  method: Method;
+  data?: any;
+  headers?:any;
+};
 
 export default class HTTPTransport {
-  static BASE_URL = Url.BASE;
-  protected _baseUrl: string;
+  static API_URL = 'https://ya-praktikum.tech/api/v2';
+  protected endpoint: string;
 
-  constructor(url: string) {
-    this._baseUrl = `${HTTPTransport.BASE_URL}${url}`;
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
   static isObject(value: unknown) {
@@ -42,57 +37,49 @@ export default class HTTPTransport {
     }, "?");
   }
 
-  public get: HTTPMethod = (url, options = {}) => {
-    return this.request(
-      !!options.data
-        ? `${this._baseUrl + url}${HTTPTransport.queryStringify(options.data)}`
-        : this._baseUrl + url,
-      { ...options, method: METHODS.GET },
-      options.timeout
-    );
-  };
+  public get<Response>(path = '/', data?: unknown): Promise<Response> {
+    return this.request<Response>(
+      !!data 
+      ? `${this.endpoint + path}${HTTPTransport.queryStringify(data)}`
+      : this.endpoint + path);
+  }
 
-  public post: HTTPMethod = (url, options = {}) => {
-    return this.request(
-      this._baseUrl + url,
-      {
-        method: METHODS.POST,
-        data: options,
-      },
-      options.timeout
-    );
-  };
+  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Post,
+      data,
+    });
+  }
 
-  public put: HTTPMethod = (url, options = {}) => {
-    return this.request(
-      this._baseUrl + url,
-      {
-        method: METHODS.PUT,
-        data: options,
-      },
-      options.timeout
-    );
-  };
+  public put<Response = void>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      data,
+      method: Method.Put, 
+    });
+  }
 
-  public delete: HTTPMethod = (url, options = {}) => {
-    return this.request(
-      this._baseUrl + url,
-      {
-        method: METHODS.DELETE,
-        data: options,
-      },
-      options.timeout
-    );
-  };
+  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Patch,
+      data,
+    });
+  }
 
-  private request<Response>(url: string, options: Options = {method: METHODS.GET}, timeout = 5000): Promise<Response> {
-    const {method, data, headers} = options;
+  public delete<Response>(path: string, data: any): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Delete,
+      data
+    });
+  }
+
+  private request<Response>(url: string, options: Options = {method: Method.Get}): Promise<Response> {
+    const {method, data} = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
 
-      xhr.onreadystatechange = (e) => {
+      xhr.onreadystatechange = () => {
 
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status < 400) {
@@ -109,14 +96,14 @@ export default class HTTPTransport {
 
       if( (data instanceof FormData) === false) {
         xhr.setRequestHeader('Content-Type', 'application/json');
-      }
+      } 
 
       xhr.withCredentials = true;
       xhr.responseType = 'json';
 
-      if (method === METHODS.GET || !data) {
+      if (method === Method.Get || !data) {
         xhr.send();
-      } else {
+      } else {  
         xhr.send( (data instanceof FormData) === false ? JSON.stringify(data) : data);
       }
     });

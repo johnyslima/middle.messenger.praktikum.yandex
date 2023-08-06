@@ -32,7 +32,7 @@ export default class ProfileBody extends Block {
   }
 
   init() {
-    const { login, first_name, second_name, avatar, display_name, id, phone, email } = this.props.data 
+    const { login, first_name, second_name, display_name, phone, email } = this.props.data 
     let child: ChildType = this.children;
     const emailField: FormInput = new FormInput({
       placeholder: "Почта",

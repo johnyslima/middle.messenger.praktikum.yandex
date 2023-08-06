@@ -70,7 +70,8 @@ export class FormInput extends Block {
   }
 
   getFile() {
-    return (this.element?.children[0].files[0] as string | Blob);
+    let elem: any = (this.element?.children[0] as HTMLInputElement)
+    return (elem?.files[0] as string | Blob);
   }
 
   isValid(validator: ValidatorsType) {

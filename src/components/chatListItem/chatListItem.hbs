@@ -1,6 +1,6 @@
 <div class="chatList-item {{#if currentRoom}}current-item{{/if}}">
   <div class="chatList-item__avatar">
-    <img src={{ avatar }} width="50" alt="avatar in chat list item" />
+    <img src={{{avatar}}} width="50" alt="avatar in chat list item" />
   </div>
   <div class="chatList-item-info">
     <div class="chatList-item-info__row">
@@ -8,17 +8,17 @@
         {{{title}}}
       </div>
       <div class="chatList-item-info__time">
-        {{ time }}
+        {{{time}}}
       </div>
     </div>
     <div class="chatList-item-info__row">
       <div class="chatList-item-info__last-message">
-        {{ last_message }}
+        {{{last_message}}}
       </div>
       {{#if countUnread}}
       <div class="chatList-item-info__count-unread">
         <span>
-          {{ unread_count }}
+          {{{unread_count}}}
         </span>
       </div>
       {{/if}}
